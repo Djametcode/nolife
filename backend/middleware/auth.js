@@ -10,6 +10,7 @@ const authentication = (req, res, next) => {
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET);
     console.log(data);
+    req.user = data;
     next();
   } catch (error) {
     console.log(error);

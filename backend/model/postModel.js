@@ -8,10 +8,15 @@ const postSchema = new Schema({
   },
   images: {
     type: String,
+    default: "",
   },
   createdBy: {
     type: mongoose.Types.ObjectId,
     ref: "User",
+  },
+  timePosted: {
+    type: Date,
+    default: Date.now(),
   },
   like: [],
   comments: [],
