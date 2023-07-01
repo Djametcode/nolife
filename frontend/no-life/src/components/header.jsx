@@ -5,9 +5,7 @@ const HeaderComponent = () => {
   return (
     <div className=" max-sm:z-10 max-sm:h-14 h-20 flex justify-start items-center font-geologica">
       <div>
-        <h1 className=" text-primary-content max-sm:text-lg text-4xl pl-5">
-          No-Life
-        </h1>
+        <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
       {isLogin && (
         <div className=" absolute right-5 flex items-center gap-5">
