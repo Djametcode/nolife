@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const HeaderComponent = () => {
-  const [isLogin, setIslogin] = useState(false);
   return (
     <div className=" max-sm:z-10 max-sm:h-14 h-20 flex justify-start items-center font-geologica">
       <div>

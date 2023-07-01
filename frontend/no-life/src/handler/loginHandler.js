@@ -1,0 +1,17 @@
+import axios from "axios";
+
+const loginHandler = async (event, item) => {
+  event.preventDefault();
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/api/v11/no-life/login-user",
+      item
+    );
+    const datas = await response.data;
+    console.log(datas);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { loginHandler };

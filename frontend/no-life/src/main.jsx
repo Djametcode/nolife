@@ -6,6 +6,7 @@ import RootLayout from "./layout/rootLayout.jsx";
 import SignUp from "./components/signUp";
 import LoginComponents from "./components/login";
 import Landing from "./components/landing";
+import NavigateLogin from "./components/navigateLogin";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Landing />,
+        element: <NavigateLogin />,
       },
       {
         path: "/login",
