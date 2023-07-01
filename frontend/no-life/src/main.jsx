@@ -7,6 +7,8 @@ import SignUp from "./components/signUp";
 import LoginComponents from "./components/login";
 import Landing from "./components/landing";
 import NavigateLogin from "./components/navigateLogin";
+import LandingUser from "./components/landingUser";
+import HeaderComponent from "./components/header";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
     ],
+  },
+  {
+    path: "/landing-user",
+    element: <LandingUser />,
   },
 ]);
 

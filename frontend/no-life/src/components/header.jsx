@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { userContext } from "../context/context";
 
 const HeaderComponent = () => {
+  const { isLogin, setIsLogin } = useContext(userContext);
   return (
     <div className=" max-sm:z-10 max-sm:h-14 h-20 flex justify-start items-center font-geologica">
       <div>
@@ -14,7 +16,10 @@ const HeaderComponent = () => {
             <li>Akun</li>
           </ul>
           <div className=" flex gap-3 items-center">
-            <button className=" bg-accent-focus p-2 rounded-lg text-warning-content">
+            <button
+              onClick={() => setIsLogin(false)}
+              className=" bg-accent-focus p-2 rounded-lg text-warning-content"
+            >
               Log Out
             </button>
           </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const loginHandler = async (event, item) => {
+const loginHandler = async (event, item, func, navigate) => {
   event.preventDefault();
   try {
     const response = await axios.post(
@@ -8,6 +8,8 @@ const loginHandler = async (event, item) => {
       item
     );
     const datas = await response.data;
+    navigate("/landing-user");
+    func(true);
     console.log(datas);
   } catch (error) {
     console.log(error);
