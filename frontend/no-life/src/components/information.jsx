@@ -22,7 +22,7 @@ const Information = () => {
           </p>
         </div>
       </div>
-      <div className="collapse bg-base-200">
+      <div className="collapse bg-base-200 mb-16">
         <input type="checkbox" />
         <div className="collapse-title text-base">I am fell depressed ?</div>
         <div className="collapse-content">
