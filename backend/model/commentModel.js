@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const userModel = require("./userModel");
 const { Schema } = mongoose;
 
 const commentSchema = new Schema({
@@ -21,6 +22,10 @@ const commentSchema = new Schema({
   time: {
     type: Date,
     default: Date.now(),
+  },
+  postId: {
+    type: mongoose.Types.ObjectId,
+    ref: "Post",
   },
 });
 

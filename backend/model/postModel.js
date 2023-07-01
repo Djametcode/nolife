@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const likeSchema = require("../model/likeModel");
 
 const postSchema = new Schema({
   text: {
