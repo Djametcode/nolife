@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginHandler } from "../handler/loginHandler";
 import { userContext } from "../context/context";
+import { useDispatch } from "react-redux";
+import { authAction } from "../redux/store";
 
 const LoginComponents = () => {
   const navigate = useNavigate();
@@ -13,8 +15,7 @@ const LoginComponents = () => {
     password: passUser,
   };
 
-  const { setIsLogin } = useContext(userContext);
-
+  const dispatch = useDispatch();
   return (
     <div className=" flex justify-center items-center h-full w-full font-geologica">
       <form className=" flex flex-col gap-3 bg-slate-100 max-sm:m-5 max-sm:h-[350px] basis-[475px] h-[400px] max-sm:p-5 p-10 shadow-md rounded-lg">
@@ -32,7 +33,7 @@ const LoginComponents = () => {
         />
         <div className=" flex justify-center">
           <button
-            onClick={(e) => loginHandler(e, data, setIsLogin, navigate)}
+            onClick={(e) => loginHandler(e, data, navigate, dispatch)}
             className=" bg-white p-3 max-sm:p-2 rounded-lg"
           >
             Login

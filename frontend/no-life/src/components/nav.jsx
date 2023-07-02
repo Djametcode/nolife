@@ -7,7 +7,7 @@ const NavLanding = () => {
       <div className=" max-sm:hidden border-b shadow sticky top-20 z-20 mt-20 bg-slate-50 text-black flex items-center gap-3 font-geologica justify-start">
         <Link
           className=" flex flex-col border-r justify-center w-full text-center items-center h-14 hover:bg-primary-focus"
-          to="/welcome/home/beranda"
+          to="/welcome/home/post"
         >
           Home
         </Link>

@@ -1,8 +1,11 @@
-import { useContext } from "react";
-import { userContext } from "../context/context";
+import { useDispatch, useSelector } from "react-redux";
+import logOutHandler from "../handler/LoggingOutHandler";
+import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = () => {
-  const { isLogin, logOut } = useContext(userContext);
+  const isLogged = useSelector((state) => state.auth.isLogin);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className=" max-sm:z-10 max-sm:h-16 h-20 flex gap-3 justify-start items-center font-geologica">
       <div className=" pl-5 md:hidden">
@@ -23,7 +26,7 @@ const HeaderComponent = () => {
       <div>
         <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
-      {/* {isLogin && (
+      {isLogged && (
         <div className=" absolute right-5 flex items-center gap-5">
           <ul className=" flex gap-2 text-lg text-primary-content items-center">
             <li>Beranda</li>
@@ -32,14 +35,14 @@ const HeaderComponent = () => {
           </ul>
           <div className=" flex gap-3 items-center">
             <button
-              onClick={logOut}
+              onClick={() => logOutHandler(navigate, dispatch)}
               className=" bg-accent-focus p-2 rounded-lg text-warning-content"
             >
               Log Out
             </button>
           </div>
         </div>
-      )} */}
+      )}
       {/* {!isLogin && (
         <div className=" absolute right-5 bg-accent-focus p-2 rounded-lg text-warning-content">
           <button>Login</button>

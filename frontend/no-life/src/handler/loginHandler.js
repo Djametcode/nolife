@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { authAction } from "../redux/store";
 
-const loginHandler = async (event, item, func, navigate) => {
+const loginHandler = async (event, item, navigate, dispatch) => {
   event.preventDefault();
   try {
     const response = await axios.post(
@@ -11,9 +12,8 @@ const loginHandler = async (event, item, func, navigate) => {
     const datas = await response.data;
 
     const { token } = datas;
-
     await Cookies.set("token", token);
-    await func(true);
+    await dispatch(authAction.login());
     await navigate("/welcome/home/post");
     console.log(datas);
   } catch (error) {

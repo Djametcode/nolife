@@ -1,19 +1,19 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./layout/rootLayout.jsx";
 import SignUp from "./components/signUp";
 import LoginComponents from "./components/login";
-import Landing from "./components/landing";
 import NavigateLogin from "./components/navigateLogin";
 import LandingUser from "./components/landingUser";
-import HeaderComponent from "./components/header";
 import Space from "./components/space";
 import Greeting from "./components/greetings";
 import { getAllPost } from "./handler/getAllPost";
 import Profile from "./components/profile";
 import NavLanding from "./components/nav";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +82,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
