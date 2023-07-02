@@ -49,7 +49,10 @@ const LandingUser = () => {
           <p>{item.text}</p>
           <div className=" pb-14 flex justify-center">
             {item.images === "" ? null : (
-              <img className=" rounded-lg w-full h-72" src={item.images} />
+              <img
+                className=" rounded-lg w-full max-h-60 object-cover"
+                src={item.images}
+              />
             )}
           </div>
           <div className=" max-sm:text-sm absolute bottom-5 left-5 flex gap-3">
