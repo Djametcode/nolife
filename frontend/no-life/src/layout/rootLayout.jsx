@@ -1,32 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import HeaderComponent from "../components/header";
 import Footer from "../components/footer";
-import { userContext } from "../context/context";
-import { useState } from "react";
-import Cookies from "js-cookie";
 import NavMobile from "../components/navBarMobile";
+import { useSelector } from "react-redux";
 
 const RootLayout = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    setIsLogin(false);
-    Cookies.remove("token");
-    navigate("/login");
-  };
-
-  const isToggle = false;
+  const isToggle = useSelector((state) => state.auth.isToggle);
   return (
-    <userContext.Provider value={{ isLogin, setIsLogin, logOut }}>
-      <div className=" h-screen w-screen">
-        <div className=" fixed top-0 w-full z-20 bg-primary shadow-md">
-          <HeaderComponent />
-        </div>
-        {isToggle && <NavMobile />}
-        {/* <div className=" max-sm:z-0 max-sm:flex-col flex h-full w-full relative z-0">
+    <div className=" h-screen w-screen">
+      <div className=" fixed top-0 w-full z-20 bg-primary shadow-md">
+        <HeaderComponent />
+      </div>
+      {isToggle && <NavMobile />}
+      {/* <div className=" max-sm:z-0 max-sm:flex-col flex h-full w-full relative z-0">
           {!isLogin && <Space />}
           <div className=" flex flex-col basis-1/2 max-sm:pt-0 pt-20 gap-10">
             {!isLogin && (
@@ -47,14 +35,13 @@ const RootLayout = () => {
             <Information />
           </div>
         </div> */}
-        <div className=" w-full h-full">
-          <Outlet />
-        </div>
-        <div className=" fixed bottom-0 w-full">
-          <Footer />
-        </div>
+      <div className=" w-full h-full">
+        <Outlet />
       </div>
-    </userContext.Provider>
+      <div className=" fixed bottom-0 w-full">
+        <Footer />
+      </div>
+    </div>
   );
 };
 

@@ -1,14 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import logOutHandler from "../handler/LoggingOutHandler";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authAction } from "../redux/store";
 
 const HeaderComponent = () => {
-  // const isLogged = useSelector((state) => state.auth.isLogin);
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const toggleNavMobile = (dispatch) => {
+    dispatch(authAction.toggleNavMobile());
+  };
   return (
     <div className=" max-sm:z-10 max-sm:h-16 h-16 flex gap-3 justify-start items-center font-geologica">
-      <div className=" pl-5 md:hidden">
+      <div
+        onClick={() => toggleNavMobile(dispatch)}
+        className=" cursor-pointer pl-5 md:hidden"
+      >
         <svg
           fill="currentColor"
           viewBox="0 0 20 20"

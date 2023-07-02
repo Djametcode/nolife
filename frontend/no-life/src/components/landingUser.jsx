@@ -23,7 +23,10 @@ const LandingUser = () => {
         <h1>All Posts</h1>
       </div> */}
       {data.map((item) => (
-        <div className=" relative bg-slate-100 shadow flex flex-col gap-3 m-3 h-full max-sm:w-full w-[500px] overflow-scroll font-geologica p-3 rounded-lg">
+        <div
+          key={item._id}
+          className=" relative bg-slate-100 shadow flex flex-col gap-3 m-3 h-full max-sm:w-full w-[500px] overflow-scroll font-geologica p-3 rounded-lg"
+        >
           <div className=" flex gap-3 items-center border-b">
             <div className="avatar">
               <div className=" w-16 rounded-full">
