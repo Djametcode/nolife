@@ -65,14 +65,8 @@ const router = createBrowserRouter([
         children: [
           {
             path: "home",
-            element: <NavLanding />,
-            children: [
-              {
-                path: "post",
-                element: <LandingUser />,
-                loader: getAllPost,
-              },
-            ],
+            element: <LandingUser />,
+            loader: getAllPost,
           },
         ],
       },

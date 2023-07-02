@@ -12,7 +12,6 @@ const getAllPost = async () => {
       }
     );
     const result = await response.data;
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
