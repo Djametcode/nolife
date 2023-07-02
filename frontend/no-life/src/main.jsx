@@ -19,6 +19,7 @@ import Account from "./components/account";
 import MyPost from "./components/myPost";
 import getMyPost from "./handler/getMyPost";
 import PostForm from "./components/postForm";
+import ProtectedRoute from "./protect/protectRoute";
 
 const router = createBrowserRouter([
   {

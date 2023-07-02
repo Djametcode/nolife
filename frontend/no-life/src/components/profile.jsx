@@ -1,7 +1,15 @@
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLoaderData, useLocation } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const items = useLoaderData();
   const { data } = items;
   const location = useLocation();
