@@ -16,6 +16,9 @@ import store from "./redux/store";
 import getCurrentUser from "./handler/getCurrentUser";
 import Chat from "./components/chat";
 import Account from "./components/account";
+import MyPost from "./components/myPost";
+import getMyPost from "./handler/getMyPost";
+import PostForm from "./components/postForm";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +81,18 @@ const router = createBrowserRouter([
           {
             path: "account",
             element: <Account />,
+            loader: getCurrentUser,
+            children: [
+              {
+                path: "",
+                element: <MyPost />,
+                loader: getMyPost,
+              },
+            ],
+          },
+          {
+            path: "post",
+            element: <PostForm />,
           },
         ],
       },

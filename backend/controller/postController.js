@@ -81,14 +81,28 @@ const updatePost = async (req, res) => {
 
 const getAllPost = async (req, res) => {
   try {
-    const data = await Post.find({}).populate({
-      path: "createdBy",
-      select: ["username", "email"],
-    });
+    const data = await Post.find({})
+      .populate({
+        path: "createdBy",
+        select: ["username", "email"],
+      })
+      .sort("-timePosted");
     if (!data) {
       return res.status(404).json({ msg: "Post deleted" });
     }
 
+    return res.status(200).json({ msg: "Success", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getMyPost = async (req, res) => {
+  try {
+    const data = await Post.find({ createdBy: req.user.userId });
+    if (!data) {
+      return res.status(200).json({ msg: "Belum ada postingan" });
+    }
     return res.status(200).json({ msg: "Success", data });
   } catch (error) {
     console.log(error);
@@ -202,6 +216,7 @@ module.exports = {
   createPost,
   updatePost,
   getAllPost,
+  getMyPost,
   deletePost,
   giveLike,
   giveComment,
