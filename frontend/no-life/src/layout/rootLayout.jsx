@@ -47,7 +47,7 @@ const RootLayout = () => {
             <Information />
           </div>
         </div> */}
-        <div className=" h-full">
+        <div className="">
           <Outlet />
         </div>
         <div className=" fixed bottom-0 w-full">

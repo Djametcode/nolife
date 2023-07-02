@@ -11,9 +11,11 @@ import Space from "./components/space";
 import Greeting from "./components/greetings";
 import { getAllPost } from "./handler/getAllPost";
 import Profile from "./components/profile";
-import NavLanding from "./components/nav";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import getCurrentUser from "./handler/getCurrentUser";
+import Chat from "./components/chat";
+import Account from "./components/account";
 
 const router = createBrowserRouter([
   {
@@ -60,13 +62,22 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "welcome",
+        path: "/welcome",
         element: <Profile />,
+        loader: getCurrentUser,
         children: [
           {
-            path: "home",
+            path: "",
             element: <LandingUser />,
             loader: getAllPost,
+          },
+          {
+            path: "chat",
+            element: <Chat />,
+          },
+          {
+            path: "account",
+            element: <Account />,
           },
         ],
       },

@@ -11,10 +11,11 @@ const loginHandler = async (event, item, navigate, dispatch) => {
     );
     const datas = await response.data;
 
-    const { token } = datas;
+    const { token, user } = datas;
     await Cookies.set("token", token);
+    await Cookies.set("userId", user._id);
     await dispatch(authAction.login());
-    await navigate("/welcome/home/post");
+    await navigate("/welcome");
     console.log(datas);
   } catch (error) {
     console.log(error);

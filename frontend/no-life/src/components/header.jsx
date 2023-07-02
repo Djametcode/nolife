@@ -3,11 +3,11 @@ import logOutHandler from "../handler/LoggingOutHandler";
 import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = () => {
-  const isLogged = useSelector((state) => state.auth.isLogin);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const isLogged = useSelector((state) => state.auth.isLogin);
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
   return (
-    <div className=" max-sm:z-10 max-sm:h-16 h-20 flex gap-3 justify-start items-center font-geologica">
+    <div className=" max-sm:z-10 max-sm:h-16 h-16 flex gap-3 justify-start items-center font-geologica">
       <div className=" pl-5 md:hidden">
         <svg
           fill="currentColor"
@@ -26,7 +26,7 @@ const HeaderComponent = () => {
       <div>
         <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
-      {isLogged && (
+      {/* {isLogged && (
         <div className=" absolute right-5 flex items-center gap-5">
           <ul className=" flex gap-2 text-lg text-primary-content items-center">
             <li>Beranda</li>
@@ -41,8 +41,8 @@ const HeaderComponent = () => {
               Log Out
             </button>
           </div>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
       {/* {!isLogin && (
         <div className=" absolute right-5 bg-accent-focus p-2 rounded-lg text-warning-content">
           <button>Login</button>
