@@ -36,10 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <div className=" w-full h-full flex">
+          <div className=" w-full h-full flex max-sm:flex-col max-sm:mt-48">
             <Space />
             <div className=" basis-1/2 -translate-y-20">
-              <h1 className=" flex justify-center items-center translate-y-56 font-geologica text-4xl">
+              <h1 className=" flex justify-center items-center max-sm:translate-y-0 translate-y-56 font-geologica text-4xl">
                 Login
               </h1>
               <LoginComponents />
@@ -50,10 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: (
-          <div className=" w-full h-full flex">
+          <div className=" w-full h-full flex max-sm:flex-col max-sm:mt-48">
             <Space />
             <div className=" basis-1/2 -translate-y-20">
-              <h1 className=" flex justify-center items-center translate-y-56 font-geologica text-4xl">
+              <h1 className=" flex justify-center items-center max-sm:translate-y-0 translate-y-56 font-geologica text-4xl">
                 SignUp
               </h1>
               <SignUp />
