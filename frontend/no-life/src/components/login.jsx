@@ -14,8 +14,9 @@ const LoginComponents = () => {
   };
 
   const { setIsLogin } = useContext(userContext);
+
   return (
-    <div className=" flex justify-center items-center h-full w-full font-geologica basis-1/2">
+    <div className=" flex justify-center items-center h-full w-full font-geologica">
       <form className=" flex flex-col gap-3 bg-slate-100 max-sm:m-5 max-sm:h-[350px] basis-[475px] h-[400px] max-sm:p-5 p-10 shadow-md rounded-lg">
         <input
           className=" p-3 rounded-lg focus:outline-none max-sm:p-2 max-sm:text-sm"

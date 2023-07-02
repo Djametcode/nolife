@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -9,6 +9,11 @@ import Landing from "./components/landing";
 import NavigateLogin from "./components/navigateLogin";
 import LandingUser from "./components/landingUser";
 import HeaderComponent from "./components/header";
+import Space from "./components/space";
+import Greeting from "./components/greetings";
+import { getAllPost } from "./handler/getAllPost";
+import Profile from "./components/profile";
+import NavLanding from "./components/nav";
 
 const router = createBrowserRouter([
   {
@@ -17,21 +22,61 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <NavigateLogin />,
+        element: (
+          <div className=" h-full w-full  flex justify-center items-center">
+            <div>
+              <Greeting />
+              <NavigateLogin />
+            </div>
+          </div>
+        ),
       },
       {
         path: "/login",
-        element: <LoginComponents />,
+        element: (
+          <div className=" w-full h-full flex">
+            <Space />
+            <div className=" basis-1/2 -translate-y-20">
+              <h1 className=" flex justify-center items-center translate-y-56 font-geologica text-4xl">
+                Login
+              </h1>
+              <LoginComponents />
+            </div>
+          </div>
+        ),
       },
       {
         path: "/signUp",
-        element: <SignUp />,
+        element: (
+          <div className=" w-full h-full flex">
+            <Space />
+            <div className=" basis-1/2 -translate-y-20">
+              <h1 className=" flex justify-center items-center translate-y-56 font-geologica text-4xl">
+                SignUp
+              </h1>
+              <SignUp />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "welcome",
+        element: <Profile />,
+        children: [
+          {
+            path: "home",
+            element: <NavLanding />,
+            children: [
+              {
+                path: "post",
+                element: <LandingUser />,
+                loader: getAllPost,
+              },
+            ],
+          },
+        ],
       },
     ],
-  },
-  {
-    path: "/landing-user",
-    element: <LandingUser />,
   },
 ]);
 

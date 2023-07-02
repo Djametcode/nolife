@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const loginHandler = async (event, item, func, navigate) => {
   event.preventDefault();
@@ -8,8 +9,12 @@ const loginHandler = async (event, item, func, navigate) => {
       item
     );
     const datas = await response.data;
-    navigate("/landing-user");
-    func(true);
+
+    const { token } = datas;
+
+    await Cookies.set("token", token);
+    await func(true);
+    await navigate("/welcome/home/post");
     console.log(datas);
   } catch (error) {
     console.log(error);
