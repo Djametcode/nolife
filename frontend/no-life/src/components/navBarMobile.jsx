@@ -25,6 +25,17 @@ const NavMobile = () => {
         <Link
           onClick={() => dispatch(authAction.closeNavMobile())}
           className={`rounded-lg p-2 ${
+            currentLocation === "/welcome/post"
+              ? "bg-primary text-white"
+              : "bg-white"
+          }`}
+          to="/welcome/post"
+        >
+          Post
+        </Link>
+        <Link
+          onClick={() => dispatch(authAction.closeNavMobile())}
+          className={`rounded-lg p-2 ${
             currentLocation === "/welcome/chat"
               ? "bg-primary text-white"
               : "bg-white"
