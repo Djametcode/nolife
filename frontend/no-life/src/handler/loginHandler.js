@@ -6,7 +6,7 @@ const loginHandler = async (event, item, navigate, dispatch) => {
   event.preventDefault();
   try {
     const response = await axios.post(
-      "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/login-user",
+      "http://localhost:3000/api/v11/no-life/login-user",
       item
     );
     const datas = await response.data;

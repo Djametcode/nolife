@@ -24,7 +24,6 @@ const createPost = async (req, res) => {
 
       const data = await Post.create(noImages);
       await user.posts.push(data);
-      await user.save();
 
       return res.status(200).json({ msg: "Success with no Images", user });
     }
@@ -50,7 +49,6 @@ const createPost = async (req, res) => {
 
     const data = await Post.create(post);
     await user.posts.push(data);
-    await user.save();
 
     return res.status(200).json({ msg: "Success", user });
   } catch (error) {
