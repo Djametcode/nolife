@@ -29,11 +29,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <div className=" h-full w-full  flex justify-center items-center">
-            <div>
-              <Greeting />
-              <NavigateLogin />
-            </div>
+          <div className=" h-full w-full  flex flex-col items-center">
+            <Greeting />
           </div>
         ),
       },
