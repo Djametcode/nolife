@@ -18,6 +18,12 @@ const NavLanding = () => {
           Chat
         </Link>
         <Link
+          className=" flex flex-col border-r justify-center w-full text-center h-14 hover:bg-primary-focus"
+          to="/welcome/post"
+        >
+          Chat
+        </Link>
+        <Link
           className=" flex flex-col justify-center w-full text-center h-14"
           to="/welcome"
         >
