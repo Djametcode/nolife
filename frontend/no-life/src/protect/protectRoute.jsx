@@ -7,7 +7,6 @@ import { Navigate } from "react-router-dom";
 const Protectedroute = ({ element: Element, loader: getData, ...rest }) => {
   const [isLoading, setLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
-  const token = Cookies.get("token");
 
   useEffect(() => {
     const getAllData = async () => {
