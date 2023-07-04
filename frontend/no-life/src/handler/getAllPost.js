@@ -12,7 +12,7 @@ const getAllPost = async (setData) => {
       }
     );
     const result = await response.data;
-    return setData(result.data);
+    return result;
   } catch (error) {
     console.log(error);
   }
