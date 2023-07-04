@@ -2,7 +2,6 @@ import { Outlet, useLoaderData } from "react-router-dom";
 
 const Account = () => {
   const items = useLoaderData();
-  console.log(items);
   return (
     <div className=" mt-16 font-geologica flex flex-col gap-3 h-full">
       <div className=" max-sm:m-3 w-1/5 max-sm:w-fit flex justify-start items-center gap-3 m-3 rounded-lg">
