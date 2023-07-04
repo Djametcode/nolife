@@ -15,8 +15,9 @@ const loginHandler = async (event, item, navigate, dispatch) => {
     await Cookies.set("token", token);
     await Cookies.set("userId", user._id);
     await dispatch(authAction.login());
-    setInterval(() => {
+    const item = setInterval(() => {
       navigate("/welcome");
+      clearInterval(item);
     }, 3000);
     console.log(datas);
   } catch (error) {

@@ -4,9 +4,10 @@ import { authAction } from "../redux/store";
 const logOutHandler = (navigate, dispatch) => {
   Cookies.remove("token");
   dispatch(authAction.logOut());
-  setInterval(() => {
+  const item = setInterval(() => {
     dispatch(authAction.closeNavMobile());
     navigate("/login");
+    clearInterval(item);
   }, 3000);
 };
 
