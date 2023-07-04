@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const getAllPost = async () => {
+const getAllPost = async (setData) => {
   try {
     const response = await axios.get(
       "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-all-post",
@@ -12,8 +12,7 @@ const getAllPost = async () => {
       }
     );
     const result = await response.data;
-    console.log(result);
-    return result;
+    return setData(result.data);
   } catch (error) {
     console.log(error);
   }

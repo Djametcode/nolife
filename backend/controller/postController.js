@@ -131,8 +131,12 @@ const giveLike = async (req, res) => {
     }
 
     //need to fix only can like once
+    const hasLike = await Like.exists({ likeCreator: createdBy, postId: id });
 
-    const filterUser = post.like.includes();
+    if (hasLike) {
+      return res.status(400).json({ msg: "You already like this" });
+    }
+
     const newLike = new Like({
       likeCreator: createdBy,
       postId: id,
@@ -145,6 +149,7 @@ const giveLike = async (req, res) => {
     return res.status(200).json({ msg: "Success", post });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ msg: "Internal server Error" });
   }
 };
 

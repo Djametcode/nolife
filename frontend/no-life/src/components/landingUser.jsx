@@ -1,27 +1,37 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Cookies from "js-cookie";
-import { useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import likeHandler from "../handler/likeHandler";
+import axios from "axios";
 
 const LandingUser = () => {
-  const item = useLoaderData();
-  const { msg, data } = item;
+  const [data, setData] = useState([]);
+  const [like, setLike] = useState(0);
   console.log(data);
 
-  const navigate = useNavigate();
-  const token = Cookies.get("token");
+  const getAllPost = async () => {
+    try {
+      const response = await axios.get(
+        "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-all-post",
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }
+      );
+      const result = await response.data;
+      setData(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token]);
+    getAllPost();
+  }, [like]);
   return (
     <div className=" flex flex-col items-center max-sm:pt-16 max-sm:p-4 max-sm:pb-24 pt-20 w-full pb-20">
-      {/* <div className=" font-geologica p-5 fixed top-20 bg-primary w-full">
-        <h1>All Posts</h1>
-      </div> */}
       {data.map((item) => (
         <div
           key={item._id}
@@ -58,12 +68,14 @@ const LandingUser = () => {
             )}
           </div>
           <div className=" max-sm:text-sm absolute bottom-3 left-3 flex flex-col gap-3">
-            {/* <div className=" flex gap-3 font-geologica">
-              <p>{item.share.length} share</p>
-            </div> */}
             <div className=" flex gap-3">
               <div className=" flex items-center gap-2">
-                <img className=" w-6" src="/like-svgrepo-com.svg" alt="" />
+                <img
+                  onClick={() => likeHandler(item._id, setLike, like)}
+                  className=" cursor-pointer w-6"
+                  src="/like-svgrepo-com.svg"
+                  alt=""
+                />
                 <p>{item.like.length}</p>
               </div>
               <div className=" flex gap-2 items-center">
