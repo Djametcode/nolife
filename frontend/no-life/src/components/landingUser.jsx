@@ -4,11 +4,10 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import likeHandler from "../handler/likeHandler";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const LandingUser = () => {
   const [data, setData] = useState([]);
-  const [like, setLike] = useState(0);
-  console.log(data);
 
   const getAllPost = async () => {
     try {
@@ -27,9 +26,12 @@ const LandingUser = () => {
     }
   };
 
+  const likes = useSelector((state) => state.auth.isLike);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     getAllPost();
-  }, [like]);
+  }, [likes]);
   return (
     <div className=" flex flex-col items-center max-sm:pt-16 max-sm:p-4 max-sm:pb-24 pt-20 w-full pb-20">
       {data.map((item) => (
@@ -71,7 +73,7 @@ const LandingUser = () => {
             <div className=" flex gap-3">
               <div className=" flex items-center gap-2">
                 <img
-                  onClick={() => likeHandler(item._id, setLike, like)}
+                  onClick={() => likeHandler(item._id, dispatch)}
                   className=" cursor-pointer w-6"
                   src="/like-svgrepo-com.svg"
                   alt=""

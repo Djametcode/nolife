@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { authAction } from "../redux/store";
 
-const likeHandler = async (postId, setLike, like) => {
+const likeHandler = async (postId, dispatch) => {
   const token = Cookies.get("token");
   try {
     const response = await axios.post(
@@ -14,7 +15,7 @@ const likeHandler = async (postId, setLike, like) => {
       }
     );
     const result = await response.data;
-    setLike(like + 1);
+    dispatch(authAction.likePost());
     console.log(result);
   } catch (error) {
     console.log(error);

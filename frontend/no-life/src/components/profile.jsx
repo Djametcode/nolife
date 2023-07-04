@@ -1,5 +1,3 @@
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
 import { Link, Outlet, useLoaderData, useLocation } from "react-router-dom";
 
 const Profile = () => {

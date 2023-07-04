@@ -3,6 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const authState = {
   isLogin: false,
   isToggle: false,
+  isLike: false,
 };
 
 const authSlice = createSlice({
@@ -20,6 +21,9 @@ const authSlice = createSlice({
     },
     closeNavMobile(state) {
       state.isToggle = !state.isToggle;
+    },
+    likePost(state) {
+      state.isLike = !state.isLike;
     },
   },
 });
