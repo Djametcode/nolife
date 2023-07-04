@@ -134,7 +134,7 @@ const routerElement = createBrowserRouter(
       <Route
         path="/"
         element={
-          <div className=" h-full w-full  flex flex-col items-center">
+          <div className=" h-screen w-screen flex flex-col justify-center items-center">
             <Greeting />
           </div>
         }
@@ -142,7 +142,7 @@ const routerElement = createBrowserRouter(
       <Route
         path="/login"
         element={
-          <div className=" w-full h-full flex max-sm:flex-col max-sm:mt-48">
+          <div className=" w-screen h-screen flex max-sm:flex-col max-sm:mt-48">
             <Space />
             <div className=" basis-1/2 -translate-y-20">
               <h1 className=" flex justify-center items-center max-sm:translate-y-0 translate-y-56 font-geologica text-4xl">
@@ -156,7 +156,7 @@ const routerElement = createBrowserRouter(
       <Route
         path="/signUp"
         element={
-          <div className=" w-full h-full flex max-sm:flex-col max-sm:mt-48">
+          <div className=" w-screen h-screen flex max-sm:flex-col max-sm:mt-48">
             <Space />
             <div className=" basis-1/2 -translate-y-20">
               <h1 className=" flex justify-center items-center max-sm:translate-y-0 translate-y-56 font-geologica text-4xl">
@@ -167,7 +167,7 @@ const routerElement = createBrowserRouter(
           </div>
         }
       />
-      <Route path="welcome" element={<Profile />} loader={getCurrentUser}>
+      <Route path="welcome" element={<Profile />}>
         <Route path="" element={<LandingUser />} />
         <Route path="chat" element={<Chat />} />
         <Route path="account" loader={getCurrentUser}>

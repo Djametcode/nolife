@@ -1,11 +1,19 @@
-import { Link, Outlet, useLoaderData, useLocation } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import logOutHandler from "../handler/LoggingOutHandler";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
-  const data = useLoaderData();
-  console.log(data);
-
   const location = useLocation();
   const currentLocation = location.pathname;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className=" max-sm:flex-col flex shadow-md w-full h-full">
@@ -57,9 +65,13 @@ const Profile = () => {
             Account
           </Link>
         </div>
-        <p>{data.email}</p>
         <div className=" absolute bottom-24">
-          <button className=" bg-slate-50 rounded-lg p-2 shadow">LogOut</button>
+          <button
+            onClick={() => logOutHandler(navigate, dispatch)}
+            className=" bg-slate-50 rounded-lg p-2 shadow"
+          >
+            LogOut
+          </button>
         </div>
       </div>
       <div className=" max-sm:ml-0 ml-[325px] w-full h-full">

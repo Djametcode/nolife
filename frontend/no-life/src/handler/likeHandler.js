@@ -19,9 +19,6 @@ const likeHandler = async (postId, dispatch) => {
     dispatch(authAction.likePost());
     dispatch(authAction.toggleSucces());
 
-    setInterval(() => {
-      dispatch(authAction.closeToggle());
-    }, 2000);
     console.log(result);
   } catch (error) {
     console.log(error);
