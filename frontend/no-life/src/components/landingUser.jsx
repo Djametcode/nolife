@@ -27,6 +27,7 @@ const LandingUser = () => {
   };
 
   const likes = useSelector((state) => state.auth.isLike);
+  const toggle = useSelector((state) => state.auth.isSucess);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,6 +35,11 @@ const LandingUser = () => {
   }, [likes]);
   return (
     <div className=" flex flex-col items-center max-sm:pt-16 max-sm:p-4 max-sm:pb-24 pt-20 w-full pb-20">
+      {toggle && (
+        <div className=" transition-all bg-success fixed bottom-11 right-5 z-40 h-12 flex justify-center font-geologica text-white rounded-lg items-center w-36">
+          <p>Post Liked</p>
+        </div>
+      )}
       {data.map((item) => (
         <div
           key={item._id}

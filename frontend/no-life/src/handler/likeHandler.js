@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { authAction } from "../redux/store";
 
+
 const likeHandler = async (postId, dispatch) => {
   const token = Cookies.get("token");
   try {
@@ -16,6 +17,11 @@ const likeHandler = async (postId, dispatch) => {
     );
     const result = await response.data;
     dispatch(authAction.likePost());
+    dispatch(authAction.toggleSucces());
+
+    setInterval(() => {
+      dispatch(authAction.closeToggle());
+    }, 2000);
     console.log(result);
   } catch (error) {
     console.log(error);

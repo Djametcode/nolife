@@ -4,6 +4,7 @@ const authState = {
   isLogin: false,
   isToggle: false,
   isLike: false,
+  isSucess: false,
 };
 
 const authSlice = createSlice({
@@ -24,6 +25,12 @@ const authSlice = createSlice({
     },
     likePost(state) {
       state.isLike = !state.isLike;
+    },
+    toggleSucces(state) {
+      state.isSucess = !state.isSucess;
+    },
+    closeToggle(state) {
+      state.isSucess = !state.isSucess;
     },
   },
 });
