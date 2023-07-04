@@ -1,12 +1,6 @@
-import {
-  Link,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logOutHandler from "../handler/LoggingOutHandler";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
   const location = useLocation();
@@ -14,6 +8,8 @@ const Profile = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isLogOut = useSelector((state) => state.auth.isLogin);
 
   return (
     <div className=" max-sm:flex-col flex shadow-md w-full h-full">
@@ -70,7 +66,7 @@ const Profile = () => {
             onClick={() => logOutHandler(navigate, dispatch)}
             className=" bg-slate-50 rounded-lg p-2 shadow"
           >
-            LogOut
+            {isLogOut ? "Logging out ..." : "Log Out"}
           </button>
         </div>
       </div>

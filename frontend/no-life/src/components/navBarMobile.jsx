@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authAction } from "../redux/store";
 import logOutHandler from "../handler/LoggingOutHandler";
@@ -8,6 +8,9 @@ const NavMobile = () => {
   const location = useLocation();
   const currentLocation = location.pathname;
   const navigate = useNavigate();
+
+  const isLogOut = useSelector((state) => state.auth.isLogin);
+
   return (
     <div className=" transition-all md:hidden bg-black/25 h-screen z-30">
       <div className=" md:hidden fixed z-40 h-screen w-80 bg-slate-100 rounded-tr-xl rounded-br-xl transition-all font-geologica flex flex-col p-5 gap-5 pt-20">
@@ -57,7 +60,7 @@ const NavMobile = () => {
         </Link>
         <div className=" bg-slate-200 p-2 rounded-lg absolute bottom-5 left-5">
           <button onClick={() => logOutHandler(navigate, dispatch)}>
-            LogOut
+            {isLogOut ? "Logging out .." : "log Out"}
           </button>
         </div>
       </div>
