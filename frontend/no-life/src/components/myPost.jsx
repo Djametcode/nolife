@@ -1,13 +1,19 @@
+/* eslint-disable react/jsx-key */
 import { useLoaderData } from "react-router-dom";
 
 const MyPost = () => {
   const items = useLoaderData();
   const { data } = items;
+  console.log(items);
+  console.log(data);
   //grid grid-rows-[175px_175px_175px_175px_175px_175px_175px] grid-flow-row-dense grid-cols-[1fr_1fr]
 
   return (
-    <div className=" max-sm:pt-24 max-sm:pb-24 font-geologica">
-      <h1 className=" p-2">My Post</h1>
+    <div className=" max-sm:pt-24 max-sm:pb-10 font-geologica flex flex-col">
+      <div>
+        <h1>{data.username}</h1>
+      </div>
+      <h1 className=" p-2 text-xl">My Post :</h1>
       <hr />
 
       <div className=" flex flex-wrap justify-start">
@@ -15,11 +21,11 @@ const MyPost = () => {
           <p>No post Yet .....</p>
         ) : (
           data.map((item) => (
-            <div className=" flex flex-col h-44 basis-1/3 gap-3 bg-slate-100 p-3 text-sm border">
-              <p>{item.text}</p>
+            <div className=" flex flex-col h-48 basis-1/2 gap-3 bg-slate-100 text-sm border">
+              <p className=" pl-2 pt-2">{item.text}</p>
               {item.images === "" ? null : (
                 <img
-                  className=" bg-cover h-[100px] rounded-lg object-cover w-[175px]"
+                  className=" bg-cover h-full object-cover w-full"
                   src={item.images}
                 />
               )}
