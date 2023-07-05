@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { authAction } from "../redux/store";
+import { useState } from "react";
 
 const HeaderComponent = () => {
   const dispatch = useDispatch();
 
+  const [focus, setFocus] = useState(false);
   const toggleNavMobile = (dispatch) => {
     dispatch(authAction.toggleNavMobile());
   };
@@ -30,28 +32,35 @@ const HeaderComponent = () => {
       <div>
         <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
-      {/* {isLogged && (
-        <div className=" absolute right-5 flex items-center gap-5">
-          <ul className=" flex gap-2 text-lg text-primary-content items-center">
-            <li>Beranda</li>
-            <li>Chat</li>
-            <li>Akun</li>
-          </ul>
-          <div className=" flex gap-3 items-center">
-            <button
-              onClick={() => logOutHandler(navigate, dispatch)}
-              className=" bg-accent-focus p-2 rounded-lg text-warning-content"
-            >
-              Log Out
-            </button>
-          </div>
-        </div> */}
-      {/* )} */}
-      {/* {!isLogin && (
-        <div className=" absolute right-5 bg-accent-focus p-2 rounded-lg text-warning-content">
-          <button>Login</button>
+      <div className=" absolute right-5">
+        <div className=" relative flex justify-start items-center gap-3">
+          {!focus && (
+            <div className=" absolute left-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className=" w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </div>
+          )}
+          <input
+            className=" pl-10 placeholder:pl-10 p-2 focus:outline-none w-full rounded-lg"
+            type="text"
+            placeholder="Search .."
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+          />
         </div>
-      )} */}
+      </div>
     </div>
   );
 };
