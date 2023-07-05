@@ -26,6 +26,7 @@ import getMyPost from "./handler/getMyPost";
 import PostForm from "./components/postForm";
 import Protectedroute from "./protect/protectRoute";
 import Cookies from "js-cookie";
+import Comments from "./components/comment";
 
 const token = Cookies.get("token");
 const router = createBrowserRouter([
@@ -189,6 +190,10 @@ const routerElement = createBrowserRouter(
         <Route
           path="post"
           element={token ? <PostForm /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="comment/:id"
+          element={token ? <Comments /> : <Navigate to="/login" replace />}
         />
       </Route>
     </Route>

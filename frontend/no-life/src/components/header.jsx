@@ -12,7 +12,7 @@ const HeaderComponent = () => {
 
   const isLogin = useSelector((state) => state.auth.isLogin);
   return (
-    <div className=" max-sm:z-10 max-sm:h-16 h-16 flex gap-3 justify-start items-center font-geologica">
+    <div className=" max-sm:z-10 max-sm:h-16 h-16 flex gap-1 justify-start items-center font-geologica">
       <div
         onClick={() => toggleNavMobile(dispatch)}
         className=" cursor-pointer pl-5 md:hidden"
@@ -32,7 +32,7 @@ const HeaderComponent = () => {
         </svg>
       </div>
       <div>
-        <h1 className=" text-white max-sm:text-lg text-4xl pl-2">No-Life</h1>
+        <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
       {isLogin && (
         <div className=" absolute right-5">

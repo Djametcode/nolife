@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const authState = {
   isLogin: false,
@@ -6,6 +7,7 @@ const authState = {
   isToggle: false,
   isLike: false,
   isSucess: false,
+  isComment: false,
 };
 
 const authSlice = createSlice({
@@ -32,6 +34,9 @@ const authSlice = createSlice({
     },
     closeToggle(state) {
       state.isSucess = !state.isSucess;
+    },
+    toggleComment(state) {
+      state.isComment = !state.isComment;
     },
   },
 });

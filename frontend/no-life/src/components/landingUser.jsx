@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import likeHandler from "../handler/likeHandler";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LandingUser = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -91,7 +93,10 @@ const LandingUser = () => {
                   />
                   <p>{item.like.length}</p>
                 </div>
-                <div className=" flex gap-2 items-center">
+                <div
+                  onClick={() => navigate(`comment/${item._id}`)}
+                  className=" cursor-pointer flex gap-2 items-center"
+                >
                   <img className=" w-6" src="/chat-svgrepo-com.svg" alt="" />
                   <p>{item.comments.length}</p>
                 </div>

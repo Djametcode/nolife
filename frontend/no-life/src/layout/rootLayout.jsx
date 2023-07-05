@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 const RootLayout = () => {
   const isToggle = useSelector((state) => state.auth.isToggle);
-
   return (
     <div className=" h-screen w-screen">
       <div className=" fixed top-0 w-full z-20 bg-primary shadow-md">

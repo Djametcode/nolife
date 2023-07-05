@@ -77,6 +77,27 @@ const updatePost = async (req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  const { id: postID } = req.params;
+  try {
+    const data = await Post.findOne({ _id: postID })
+      .populate("comments.createdBy")
+      .exec();
+
+    const coment = await Comment.findOne({ postId: postID }).populate(
+      "createdBy"
+    );
+
+    if (!data) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    return res.status(200).json({ msg: "Success", data, coment });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getAllPost = async (req, res) => {
   try {
     const data = await Post.find({})
@@ -219,6 +240,7 @@ module.exports = {
   createPost,
   updatePost,
   getAllPost,
+  getPostById,
   getMyPost,
   deletePost,
   giveLike,
