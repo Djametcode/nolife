@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -10,7 +11,6 @@ import {
 import RootLayout from "./layout/rootLayout.jsx";
 import SignUp from "./components/signUp";
 import LoginComponents from "./components/login";
-import NavigateLogin from "./components/navigateLogin";
 import LandingUser from "./components/landingUser";
 import Space from "./components/space";
 import Greeting from "./components/greetings";
@@ -24,9 +24,10 @@ import Account from "./components/account";
 import MyPost from "./components/myPost";
 import getMyPost from "./handler/getMyPost";
 import PostForm from "./components/postForm";
-import ProtectedRoute from "./protect/protectRoute";
 import Protectedroute from "./protect/protectRoute";
+import Cookies from "js-cookie";
 
+const token = Cookies.get("token");
 const router = createBrowserRouter([
   {
     path: "",
@@ -167,13 +168,28 @@ const routerElement = createBrowserRouter(
           </div>
         }
       />
-      <Route path="welcome" element={<Profile />}>
-        <Route path="" element={<LandingUser />} />
-        <Route path="chat" element={<Chat />} />
+      <Route
+        path="welcome"
+        element={token ? <Profile /> : <Navigate to="/login" replace />}
+      >
+        <Route
+          path=""
+          element={token ? <LandingUser /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="chat"
+          element={token ? <Chat /> : <Navigate to="/login" replace />}
+        />
         <Route path="account">
-          <Route path="" element={<MyPost />} />
+          <Route
+            path=""
+            element={token ? <MyPost /> : <Navigate to="/login" replace />}
+          />
         </Route>
-        <Route path="post" element={<PostForm />} />
+        <Route
+          path="post"
+          element={token ? <PostForm /> : <Navigate to="/login" replace />}
+        />
       </Route>
     </Route>
   )

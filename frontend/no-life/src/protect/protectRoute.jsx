@@ -1,14 +1,15 @@
-import Cookies from "js-cookie";
+/* eslint-disable react/prop-types */
 import { Navigate, Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const ProtectedRoute = (path, element) => {
+function ProtectedRoute({ element: Component, ...rest }) {
   const token = Cookies.get("token");
-
-  return token ? (
-    <Route path={path} element={element} />
-  ) : (
-    <Navigate to="/login" replace />
+  return (
+    <Route
+      {...rest}
+      element={token ? <Component /> : <Navigate to="/login" replace />}
+    ></Route>
   );
-};
+}
 
 export default ProtectedRoute;
