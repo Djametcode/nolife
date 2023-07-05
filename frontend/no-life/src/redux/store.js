@@ -2,6 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const authState = {
   isLogin: false,
+  isLogOut: false,
   isToggle: false,
   isLike: false,
   isSucess: false,
@@ -15,7 +16,7 @@ const authSlice = createSlice({
       state.isLogin = !state.isLogin;
     },
     logOut(state) {
-      state.isLogin = !state.isLogin;
+      state.isLogin = !state.isLogOut;
     },
     toggleNavMobile(state) {
       state.isToggle = !state.isToggle;

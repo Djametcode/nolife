@@ -9,7 +9,7 @@ const NavMobile = () => {
   const currentLocation = location.pathname;
   const navigate = useNavigate();
 
-  const isLogOut = useSelector((state) => state.auth.isLogin);
+  const isLogOut = useSelector((state) => state.auth.isLogOut);
 
   return (
     <div className=" transition-all md:hidden bg-black/25 h-screen z-30">

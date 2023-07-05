@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../redux/store";
 import { useState } from "react";
 
@@ -9,6 +9,8 @@ const HeaderComponent = () => {
   const toggleNavMobile = (dispatch) => {
     dispatch(authAction.toggleNavMobile());
   };
+
+  const isLogin = useSelector((state) => state.auth.isLogin);
   return (
     <div className=" max-sm:z-10 max-sm:h-16 h-16 flex gap-3 justify-start items-center font-geologica">
       <div
@@ -32,35 +34,37 @@ const HeaderComponent = () => {
       <div>
         <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
       </div>
-      <div className=" absolute right-5">
-        <div className=" relative flex justify-start items-center gap-3">
-          {!focus && (
-            <div className=" absolute left-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className=" w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </div>
-          )}
-          <input
-            className=" pl-10 placeholder:pl-10 p-2 focus:outline-none w-full rounded-lg"
-            type="text"
-            placeholder="Search .."
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
-          />
+      {isLogin && (
+        <div className=" absolute right-5">
+          <div className=" relative flex justify-start items-center gap-3">
+            {!focus && (
+              <div className=" absolute left-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className=" w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              </div>
+            )}
+            <input
+              className=" pl-10 placeholder:pl-10 max-sm:p-1 p-2 focus:outline-none w-full rounded-lg"
+              type="text"
+              placeholder="Search .."
+              onFocus={() => setFocus(true)}
+              onBlur={() => setFocus(false)}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
