@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import { useLoaderData } from "react-router-dom";
 import deletePostHandler from "../handler/deletePostHandler";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -33,7 +32,7 @@ const MyPost = () => {
   }, [refresh]);
 
   return (
-    <div className=" max-sm:pt-24 md:pt-24 md:pb-12 max-sm:pb-10 font-geologica flex flex-col">
+    <div className=" max-sm:h-screen max-sm:pt-24 md:pt-24 md:pb-12 max-sm:pb-10 font-geologica flex flex-col">
       <div>
         <h1>{data.username}</h1>
       </div>
@@ -51,8 +50,9 @@ const MyPost = () => {
               key={item._id}
               className=" relative flex flex-col h-48 md:basis-1/3 basis-1/2 gap-3 bg-slate-100 text-sm border"
             >
-              <p className=" pl-2 pt-2">{item.text}</p>
-              {item.images === "" ? null : (
+              {item.images === "" ? (
+                <p className=" pl-2 pt-2">{item.text}</p>
+              ) : (
                 <img
                   className=" bg-cover h-full object-cover w-full"
                   src={item.images}
