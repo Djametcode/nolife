@@ -32,7 +32,7 @@ const HeaderComponent = () => {
         </svg>
       </div>
       <div>
-        <h1 className=" text-white max-sm:text-lg text-4xl pl-5">No-Life</h1>
+        <h1 className=" text-white max-sm:text-lg text-4xl pl-2">No-Life</h1>
       </div>
       {isLogin && (
         <div className=" absolute right-5">
