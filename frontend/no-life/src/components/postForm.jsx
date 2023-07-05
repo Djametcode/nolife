@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
+  const [sending, setSending] = useState(false);
   const navigate = useNavigate();
   const [text, setText] = useState(null);
   console.log(text);
@@ -23,6 +24,7 @@ const PostForm = () => {
     }
 
     try {
+      setSending(true);
       const response = await axios.post(
         "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/create-post",
         data,
@@ -33,6 +35,7 @@ const PostForm = () => {
         }
       );
       await response.data;
+      setSending(false);
       await navigate("/welcome");
     } catch (error) {
       console.log(error);
@@ -56,7 +59,13 @@ const PostForm = () => {
             className="file-input w-full max-w-xs"
           />
           <div className=" bg-neutral rounded-lg p-3 w-20 text-center text-white">
-            <button onClick={postHandler}>Post</button>
+            <button onClick={postHandler} disabled={sending}>
+              {sending ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Post"
+              )}
+            </button>
           </div>
         </div>
       </form>

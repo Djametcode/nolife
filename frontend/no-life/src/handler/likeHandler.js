@@ -17,8 +17,6 @@ const likeHandler = async (postId, dispatch) => {
     );
     const result = await response.data;
     dispatch(authAction.likePost());
-    dispatch(authAction.toggleSucces());
-
     console.log(result);
   } catch (error) {
     console.log(error);
