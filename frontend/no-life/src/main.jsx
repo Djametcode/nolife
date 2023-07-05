@@ -171,7 +171,7 @@ const routerElement = createBrowserRouter(
         <Route path="" element={<LandingUser />} />
         <Route path="chat" element={<Chat />} />
         <Route path="account" loader={getCurrentUser}>
-          <Route path="" element={<MyPost />} loader={getMyPost} />
+          <Route path="" element={<MyPost />} />
         </Route>
         <Route path="post" element={<PostForm />} />
       </Route>
