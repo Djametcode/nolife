@@ -2,7 +2,14 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { authAction } from "../redux/store";
 
-const loginHandler = async (event, item, navigate, dispatch) => {
+const loginHandler = async (
+  event,
+  item,
+  navigate,
+  dispatch,
+  setError,
+  setText
+) => {
   event.preventDefault();
   try {
     const response = await axios.post(
@@ -21,7 +28,9 @@ const loginHandler = async (event, item, navigate, dispatch) => {
     }, 3000);
     console.log(datas);
   } catch (error) {
-    console.log(error);
+    const errorText = error.response.data.msg;
+    setText(errorText);
+    setError(true);
   }
 };
 

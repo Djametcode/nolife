@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [text, setText] = useState("");
+  const [isSucess, setIsSucess] = useState(false);
 
   const userData = {
     username: username,
@@ -22,7 +25,13 @@ const SignUp = () => {
         userData
       );
       const result = response.data;
-      console.log(result);
+      setText(result.msg);
+      setIsSucess(true);
+
+      const interval = setInterval(() => {
+        navigate("/login");
+        clearInterval(interval);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +40,11 @@ const SignUp = () => {
     <div className=" flex justify-center items-center h-full font-geologica">
       <form className=" flex flex-col gap-3 bg-slate-100 max-sm:m-5 max-sm:h-[350px] basis-[475px] h-[400px] p-10 shadow-md rounded-lg">
         <div>
-          <Link to="/login" relative="path" className=" text-base">
+          <Link
+            to="/login"
+            relative="path"
+            className=" text-sm underline underline-offset-2"
+          >
             {` Back to Login`}
           </Link>
         </div>
@@ -53,6 +66,9 @@ const SignUp = () => {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        <div className=" text-sm text-success italic">
+          {isSucess ? <p>{text}</p> : null}
+        </div>
         <div className=" flex justify-center">
           <button
             onClick={registHandler}

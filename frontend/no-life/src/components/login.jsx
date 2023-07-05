@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginHandler } from "../handler/loginHandler";
 import { useDispatch, useSelector } from "react-redux";
-import { RotateLoader } from "react-spinners";
 
 const LoginComponents = () => {
   const navigate = useNavigate();
@@ -17,6 +16,9 @@ const LoginComponents = () => {
   const dispatch = useDispatch();
 
   const isLogin = useSelector((state) => state.auth.isLogin);
+
+  const [text, setText] = useState();
+  const [isError, setIsError] = useState(false);
 
   return (
     <div className=" flex justify-center items-center h-full w-full font-geologica">
@@ -33,10 +35,15 @@ const LoginComponents = () => {
           placeholder="Password"
           onChange={(e) => setPass(e.target.value)}
         />
+        <div className=" text-xs italic text-warning">
+          {isError ? <p>{text}</p> : null}
+        </div>
         <div className=" flex justify-center">
           <button
             disabled={isLogin}
-            onClick={(e) => loginHandler(e, data, navigate, dispatch)}
+            onClick={(e) =>
+              loginHandler(e, data, navigate, dispatch, setIsError, setText)
+            }
             className=" bg-white w-16 md:p-2 max-sm:p-2 rounded-lg"
           >
             {isLogin ? (
