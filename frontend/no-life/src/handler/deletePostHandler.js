@@ -14,6 +14,7 @@ const deletePostHandler = async (postId, refresher, refreshState) => {
     );
     const result = await response.data;
     refresher(refreshState + 1);
+    console.log("I am called");
     console.log(result);
   } catch (error) {
     console.log(error);

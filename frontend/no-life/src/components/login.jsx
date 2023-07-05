@@ -37,9 +37,13 @@ const LoginComponents = () => {
           <button
             disabled={isLogin}
             onClick={(e) => loginHandler(e, data, navigate, dispatch)}
-            className=" bg-white p-3 max-sm:p-2 rounded-lg"
+            className=" bg-white w-16 md:p-2 max-sm:p-2 rounded-lg"
           >
-            {isLogin ? "Loging in ..." : "Login"}
+            {isLogin ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              "Login"
+            )}
           </button>
         </div>
         <div className=" flex justify-center gap-2 text-sm max-sm:text-xs">

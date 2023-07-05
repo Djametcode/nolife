@@ -42,7 +42,9 @@ const MyPost = () => {
 
       <div className=" flex flex-wrap justify-start">
         {data.length === 0 ? (
-          <p>No post Yet .....</p>
+          <div className=" p-3 h-screen flex justify-center items-center w-screen">
+            <p>No post Yet .....</p>
+          </div>
         ) : (
           data.map((item) => (
             <div
