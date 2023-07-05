@@ -16,7 +16,7 @@ const authSlice = createSlice({
       state.isLogin = !state.isLogin;
     },
     logOut(state) {
-      state.isLogin = !state.isLogOut;
+      state.isLogin = !state.isLogin;
     },
     toggleNavMobile(state) {
       state.isToggle = !state.isToggle;

@@ -30,7 +30,6 @@ const LandingUser = () => {
   };
 
   const likes = useSelector((state) => state.auth.isLike);
-  const toggle = useSelector((state) => state.auth.isSucess);
 
   const dispatch = useDispatch();
   useEffect(() => {
