@@ -220,6 +220,16 @@ const giveComment = async (req, res) => {
   }
 };
 
+const getCommentPostId = async (req, res) => {
+  const { id: postID } = req.params;
+  try {
+    const data = await Comment.findOne({ postId: postID });
+    return res.status(200).json({ msg: "Success", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteComment = async (req, res) => {
   const { id } = req.params;
 
@@ -236,6 +246,30 @@ const deleteComment = async (req, res) => {
   }
 };
 
+const updateAvatar = async (req, res) => {
+  const { id } = req.params;
+  try {
+    let file = req.file;
+    const { username } = req.body;
+
+    const result = await cloudinary.uploader.upload(file.path, {
+      resource_type: "auto",
+      folder: "Testing",
+    });
+    const image = result.secure_url;
+
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      { avatar: image, username: username },
+      { new: true }
+    );
+
+    return res.status(200).json({ msg: "Success", user });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   createPost,
   updatePost,
@@ -244,7 +278,9 @@ module.exports = {
   getMyPost,
   deletePost,
   giveLike,
+  getCommentPostId,
   giveComment,
   deleteComment,
   getAllLike,
+  updateAvatar,
 };

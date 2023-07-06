@@ -181,7 +181,7 @@ const routerElement = createBrowserRouter(
           path="chat"
           element={token ? <Chat /> : <Navigate to="/login" replace />}
         />
-        <Route path="account">
+        <Route path="account" element={<Account />}>
           <Route
             path=""
             element={token ? <MyPost /> : <Navigate to="/login" replace />}

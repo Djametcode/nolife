@@ -1,6 +1,7 @@
 const User = require("../model/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cloudinary = require("../utils/cloudinary");
 
 const registUser = async (req, res) => {
   try {
@@ -55,11 +56,13 @@ const getCurrentUser = async (req, res) => {
         username: data.username,
         email: data.email,
         post: data.posts,
+        avatar: data.avatar,
       },
     });
   } catch (error) {
     console.log(error);
   }
 };
+
 
 module.exports = { registUser, loginUser, getCurrentUser };

@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         geologica: ["Geologica", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       backgroundImage: {
         landing: "url('/landing.svg')",
