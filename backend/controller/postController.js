@@ -103,7 +103,7 @@ const getAllPost = async (req, res) => {
     const data = await Post.find({})
       .populate({
         path: "createdBy",
-        select: ["username", "email"],
+        select: ["username", "email", "avatar"],
       })
       .sort("-timePosted");
     if (!data) {

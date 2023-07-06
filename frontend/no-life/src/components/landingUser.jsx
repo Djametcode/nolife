@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const LandingUser = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  console.log(data);
   const [loading, setLoading] = useState(true);
 
   const getAllPost = async () => {
