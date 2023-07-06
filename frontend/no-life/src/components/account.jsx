@@ -76,7 +76,7 @@ const Account = () => {
             </Fragment>
           ) : null}
         </div>
-        <div className=" p-3">
+        <div className=" p-5">
           {user.avatar === "" ? (
             <svg
               fill="currentColor"
