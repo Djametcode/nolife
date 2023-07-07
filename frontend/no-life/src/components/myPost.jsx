@@ -32,7 +32,7 @@ const MyPost = () => {
   }, [refresh]);
 
   return (
-    <div className=" max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-10 font-geologica flex flex-col">
+    <div className=" max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-14 font-geologica flex flex-col">
       <div>
         <h1>{data.username}</h1>
       </div>
