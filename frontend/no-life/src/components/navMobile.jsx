@@ -4,7 +4,7 @@ const NavMobileFix = () => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <div className=" flex bg-slate-50 h-14 justify-around items-center">
+    <div className=" flex bg-slate-50 h-14 justify-around items-center border-t">
       <div
         onClick={() => navigate("/welcome")}
         className={`${

@@ -22,10 +22,6 @@ const LoginComponents = () => {
   const [text, setText] = useState();
   const [isError, setIsError] = useState(false);
 
-  const token = Cookies.get("token");
-  useEffect(() => {
-    token ? navigate("/welcome") : navigate("/login");
-  }, []);
 
   return (
     <div className=" flex justify-center items-center h-full w-full font-geologica">

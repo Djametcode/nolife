@@ -14,12 +14,8 @@ const RootLayout = () => {
   return (
     <div className=" h-screen w-screen">
       <div
-        className={`${
-          location.pathname === "/welcome" ||
-          location.pathname === "/welcome/post" ||
-          location.pathname === "/welcome/account"
-            ? "hidden"
-            : "fixed"
+        className={` ${
+          isLoggin ? "hidden" : "fixed"
         } top-0 w-full z-20 bg-primary shadow-md`}
       >
         <HeaderComponent />
@@ -33,15 +29,7 @@ const RootLayout = () => {
           <Footer />
         </div>
       )}
-      <div
-        className={`${
-          location.pathname === "/welcome" ||
-          location.pathname === "/welcome/post" ||
-          location.pathname === "/welcome/account"
-            ? "fixed"
-            : "hidden"
-        } bottom-0 w-full`}
-      >
+      <div className={` fixed bottom-0 w-full`}>
         <NavMobileFix />
       </div>
     </div>

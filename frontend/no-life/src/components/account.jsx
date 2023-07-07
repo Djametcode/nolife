@@ -70,13 +70,13 @@ const Account = () => {
               </label>
               <input
                 type="file"
-                className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+                className="file-input file-input-bordered file-input-acent w-full max-w-xs"
                 onChange={(e) => setAvatar(e.target.files[0])}
               />
             </Fragment>
           ) : null}
         </div>
-        <div className=" p-5">
+        <div className=" p-7">
           {user.avatar === "" ? (
             <svg
               fill="currentColor"
@@ -113,7 +113,7 @@ const Account = () => {
                   setCount
                 )
               }
-              className=" bg-slate-100 p-2 rounded-lg shadow w-full"
+              className=" bg-primary text-white p-2 rounded-lg shadow w-full"
             >
               Update Profile
             </button>
@@ -127,13 +127,13 @@ const Account = () => {
         ) : (
           <button
             onClick={() => setUpdate(true)}
-            className=" bg-slate-100 p-2 rounded-lg shadow w-full"
+            className=" bg-slate-100 p-2 rounded-lg shadow-sm w-full"
           >
             Edit Profile
           </button>
         )}
         {update ? null : (
-          <button className=" bg-slate-100 p-2 rounded-lg shadow w-full">
+          <button className=" bg-slate-100 p-2 rounded-lg shadow-sm w-full">
             Bagikan Profil
           </button>
         )}

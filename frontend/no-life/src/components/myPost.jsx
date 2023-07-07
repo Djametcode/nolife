@@ -32,11 +32,11 @@ const MyPost = () => {
   }, [refresh]);
 
   return (
-    <div className=" max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-14 font-geologica flex flex-col">
+    <div className=" max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-14 font-geologica flex flex-col gap-2 max-sm:p-3">
       <div>
         <h1>{data.username}</h1>
       </div>
-      <h1 className=" p-2 text-xl">My Post :</h1>
+      <h1>My Post :</h1>
 
       <div className=" flex flex-wrap justify-start">
         {data.length === 0 ? (
