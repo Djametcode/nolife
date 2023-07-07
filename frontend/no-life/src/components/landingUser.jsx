@@ -42,7 +42,7 @@ const LandingUser = () => {
     }, 3000);
   }, [likes]);
   return (
-    <div className=" flex flex-col items-center max-sm:pt-16 max-sm:pb-24 pt-20 w-full pb-20">
+    <div className=" flex flex-col items-center max-sm:pb-14 w-full pb-20">
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>

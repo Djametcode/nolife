@@ -43,7 +43,7 @@ const PostForm = () => {
   };
 
   return (
-    <div className=" mt-20 font-geologica p-5 flex flex-col justify-center gap-4">
+    <div className=" max-sm:mt-0 mt-20 font-geologica p-5 flex flex-col justify-center gap-4">
       <h1>Create New Post</h1>
       <hr />
       <form className=" flex flex-col gap-2">

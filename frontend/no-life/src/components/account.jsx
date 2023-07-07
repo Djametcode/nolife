@@ -40,7 +40,7 @@ const Account = () => {
   console.log(avatar);
 
   return (
-    <div className=" mt-16 font-geologica flex flex-col gap-3">
+    <div className=" max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-50">
       <div className=" flex justify-between">
         <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
           {update ? (
