@@ -78,21 +78,14 @@ const updatePost = async (req, res) => {
 };
 
 const getPostById = async (req, res) => {
-  const { id: postID } = req.params;
+  const { id } = req.params;
   try {
-    const data = await Post.findOne({ _id: postID })
-      .populate("comments.createdBy")
-      .exec();
-
-    const coment = await Comment.findOne({ postId: postID }).populate(
-      "createdBy"
-    );
-
+    const data = await Post.findOne({ _id: id });
     if (!data) {
       return res.status(404).json({ msg: "Post not found" });
     }
 
-    return res.status(200).json({ msg: "Success", data, coment });
+    return res.status(200).json({ msg: "Success", data });
   } catch (error) {
     console.log(error);
   }
@@ -221,10 +214,28 @@ const giveComment = async (req, res) => {
 };
 
 const getCommentPostId = async (req, res) => {
-  const { id: postID } = req.params;
+  const { id } = req.query;
   try {
-    const data = await Comment.findOne({ postId: postID });
-    return res.status(200).json({ msg: "Success", data });
+    const post = await Post.findOne({ _id: id }).populate({
+      path: "createdBy",
+      select: ["username", "avatar"],
+    });
+    const postFormat = [
+      {
+        text: post.text,
+        images: post.images,
+        createdBy: post.createdBy,
+      },
+    ];
+    const data = await Comment.find({ postId: id }).populate({
+      path: "createdBy",
+      select: ["username", "avatar"],
+    });
+    return res.status(200).json({
+      msg: "Success",
+      postFormat,
+      data,
+    });
   } catch (error) {
     console.log(error);
   }

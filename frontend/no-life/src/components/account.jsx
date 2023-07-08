@@ -40,12 +40,12 @@ const Account = () => {
   console.log(avatar);
 
   return (
-    <div className=" max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-50">
+    <div className=" max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-100">
       <div className=" flex justify-between">
         <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
           {update ? (
             <input
-              className=" focus:outline-none border rounded-lg p-1"
+              className=" font-montserrat placeholder:text-sm focus:outline-none border rounded-lg p-1"
               type="text"
               placeholder={user.username}
               onChange={(e) => setUsername(e.target.value)}
@@ -56,21 +56,21 @@ const Account = () => {
           )}
           {update ? (
             <input
-              className=" h-24 focus:outline-none border rounded-lg p-1"
+              className=" placeholder:text-sm font-montserrat pb-24 max-w-md focus:outline-none border rounded-lg p-1"
               type="text"
-              placeholder="New Bio"
+              placeholder="New Bio ..."
             />
           ) : (
             <p className=" font-montserrat text-xs">No Bio Yet</p>
           )}
           {update ? (
             <Fragment>
-              <label className=" text-xs italic text-warning">
+              <label className=" font-montserrat text-xs italic text-warning">
                 Put file to update avatar
               </label>
               <input
                 type="file"
-                className="file-input file-input-bordered file-input-acent w-full max-w-xs"
+                className="file-input font-montserrat text-xs file-input-bordered file-input-acent w-full max-w-xs"
                 onChange={(e) => setAvatar(e.target.files[0])}
               />
             </Fragment>
@@ -119,7 +119,7 @@ const Account = () => {
             </button>
             <button
               onClick={() => setUpdate(false)}
-              className=" bg-slate-100 p-2 rounded-lg shadow w-1/3"
+              className=" bg-slate-200 p-2 rounded-lg shadow-sm w-1/3"
             >
               Cancle
             </button>
@@ -127,13 +127,13 @@ const Account = () => {
         ) : (
           <button
             onClick={() => setUpdate(true)}
-            className=" bg-slate-100 p-2 rounded-lg shadow-sm w-full"
+            className=" bg-slate-200 p-2 rounded-lg shadow-sm w-full"
           >
             Edit Profile
           </button>
         )}
         {update ? null : (
-          <button className=" bg-slate-100 p-2 rounded-lg shadow-sm w-full">
+          <button className=" bg-slate-200 p-2 rounded-lg shadow-sm w-full">
             Bagikan Profil
           </button>
         )}

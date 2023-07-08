@@ -26,7 +26,7 @@ router.post("/give-like/:id", giveLike);
 router.get("/get-like/:id", getAllLike);
 router.post("/give-comment/:id", giveComment);
 router.delete("/delete-comment/:id", deleteComment);
-router.get("/comment/:id", getCommentPostId);
+router.get("/comment", getCommentPostId);
 router.patch("/update-avatar/:id", upload, updateAvatar);
 
 module.exports = router;

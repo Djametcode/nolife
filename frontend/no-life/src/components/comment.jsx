@@ -5,15 +5,18 @@ import { useEffect, useState } from "react";
 import likeHandler from "../handler/likeHandler";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Fragment } from "react";
 import commentHandler from "../handler/commentHandler";
+import getCurrentUser from "../handler/getCurrentUser";
 
 const Comments = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [commentCount, commentAdded] = useState(0);
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
 
   const getAllPost = async () => {
     try {
@@ -46,12 +49,46 @@ const Comments = () => {
     }, 3000);
   }, [likes, commentCount]);
 
+  useEffect(() => {
+    const getCurrUser = async () => {
+      try {
+        const response = await getCurrentUser();
+        console.log(response);
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCurrUser();
+  }, []);
+
   const [comment, setComment] = useState("");
   const commentData = {
     text: comment,
   };
   return (
-    <div className=" flex flex-col max-sm:h-screen items-center max-sm:pt-16 max-sm:p-4 max-sm:pb-24 pt-20 w-full pb-20">
+    <div className=" flex flex-col max-sm:h-screen items-center max-sm:pt-0 max-sm:pb-24 pt-20 w-full pb-20">
+      <div className=" w-full flex h-14 gap-5 justify-start items-center border-b font-geologic pl-5">
+        <Link to="..">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className=" cursor-pointer w-7 h-7"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </Link>
+        <div className=" text-lg">
+          <p>Reply</p>
+        </div>
+      </div>
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>
@@ -60,86 +97,71 @@ const Comments = () => {
         data.map((item) => (
           <Fragment>
             <div
-              key={item._id}
-              className=" relative bg-slate-100 shadow flex flex-col gap-3 m-3 max-sm:w-full w-[500px] overflow-scroll font-geologica p-3 rounded-lg"
+              className={` gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_50%_25%] w-full font-geologica p-5`}
             >
-              <div className=" flex gap-3 items-center border-b">
-                <div className="avatar">
-                  <div className=" w-11 rounded-full">
-                    <svg
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        clipRule="evenodd"
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
+              <div className=" row-span-2">
+                <div className=" flex justify-start">
+                  {item.createdBy.avatar === "" ? (
+                    <div>
+                      <img
+                        className=" w-12 h-12 object-cover rounded-full"
+                        src="/Blank-Avatar.png"
+                        alt=""
                       />
-                    </svg>
-                  </div>
-                </div>
-                <p>{item.createdBy.username}</p>
-              </div>
-              <div>
-                <p>{item.text}</p>
-              </div>
-              <div className=" pb-14 flex justify-center">
-                {item.images === "" ? null : (
-                  <img
-                    className=" rounded-lg w-full max-h-60 object-cover"
-                    src={item.images}
-                  />
-                )}
-              </div>
-              <div className=" max-sm:text-sm absolute bottom-3 left-3 flex flex-col gap-3">
-                <div className=" flex gap-3">
-                  <div className=" flex items-center gap-2">
+                    </div>
+                  ) : (
                     <img
-                      onClick={() => likeHandler(item._id, dispatch)}
-                      className=" cursor-pointer w-6"
-                      src="/like-svgrepo-com.svg"
+                      className=" w-12 h-12 object-cover rounded-full"
+                      src={item.createdBy.avatar}
                       alt=""
                     />
-                    <p>{item.like.length}</p>
-                  </div>
-                  <div
-                    onClick={() => console.log("click")}
-                    className=" cursor-pointer flex gap-2 items-center"
-                  >
-                    <img className=" w-6" src="/chat-svgrepo-com.svg" alt="" />
-                    <p>{item.comments.length}</p>
-                  </div>
+                  )}
                 </div>
               </div>
-              <div className=" absolute top-3 right-3">
-                <img className=" w-6" src="/share-svgrepo-com.svg" alt="" />
+              <div>
+                <p>{item.createdBy.username}</p>
+                <p className=" font-montserrat text-sm">{item.text}</p>
               </div>
+              {item.images === "" ? null : (
+                <div>
+                  <img className=" rounded-lg" src={item.images} alt="" />
+                </div>
+              )}
             </div>
-            <div className=" bg-slate-100 shadow flex justify-start w-full h-full rounded-lg font-geologica">
-              <div className=" p-3">
-                <p>Comment: </p>
-                {item.comments.length === 0 ? (
-                  <p className=" text-sm italic pt-3">No comments</p>
-                ) : (
-                  item.comments.map((item) => (
+            <div
+              className={` gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_50%_25%] w-full font-geologica p-5`}
+            >
+              <div className=" row-span-2">
+                <div className=" flex justify-start">
+                  {user.avatar === "" ? (
                     <div>
-                      <p>{item.createdBy}</p>
-                      <p>{item.commentText}</p>
+                      <img
+                        className=" w-12 h-12 object-cover rounded-full"
+                        src="/Blank-Avatar.png"
+                        alt=""
+                      />
                     </div>
-                  ))
-                )}
+                  ) : (
+                    <img
+                      className=" w-12 h-12 object-cover rounded-full"
+                      src={user.avatar}
+                      alt=""
+                    />
+                  )}
+                </div>
+              </div>
+              <div>
+                <p>{user.username}</p>
+                <input
+                  className=" focus:outline-none font-montserrat text-xs"
+                  type="text"
+                  placeholder={`Reply ${item.createdBy.username} ..`}
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
               </div>
             </div>
-            <div className=" flex gap-3 fixed bottom-0 w-full z-30 p-3 bg-slate-200 font-geologica">
-              <input
-                className=" focus:outline-none p-2 rounded-lg w-full"
-                type="text"
-                placeholder="post comment"
-                onChange={(e) => setComment(e.target.value)}
-                value={comment}
-              />
+            <div className=" w-full font-geologica text-sm p-3 flex justify-end">
               <button
                 onClick={() =>
                   commentHandler(
@@ -150,9 +172,9 @@ const Comments = () => {
                     commentAdded
                   )
                 }
-                className=" bg-slate-50 basis-16 rounded-lg"
+                className=" bg-slate-50 shadow-sm p-2 rounded-lg"
               >
-                kirim
+                Post comment
               </button>
             </div>
           </Fragment>

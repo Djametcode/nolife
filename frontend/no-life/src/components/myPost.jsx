@@ -3,10 +3,12 @@ import deletePostHandler from "../handler/deletePostHandler";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const MyPost = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(0);
+  const location = useLocation();
 
   const getMyPost = async () => {
     try {
@@ -32,12 +34,30 @@ const MyPost = () => {
   }, [refresh]);
 
   return (
-    <div className=" max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-14 font-geologica flex flex-col gap-2 max-sm:p-3">
+    <div className=" font-montserrat max-sm:h-full md:pt-24 md:pb-12 max-sm:pb-14 flex flex-col gap-2 max-sm:p-3">
       <div>
         <h1>{data.username}</h1>
       </div>
-      <h1>My Post :</h1>
-
+      <div className=" flex justify-around text-sm">
+        <button
+          className={`${
+            location.pathname === "/welcome/account"
+              ? " border-b border-black"
+              : ""
+          } w-full p-3`}
+        >
+          Postingan
+        </button>
+        <button
+          className={`${
+            location.pathname === "/welcome/reply"
+              ? " border-b border-black"
+              : ""
+          } w-full p-3`}
+        >
+          Balasan
+        </button>
+      </div>
       <div className=" flex flex-wrap justify-start">
         {data.length === 0 ? (
           <div className=" p-3 h-screen flex justify-center items-center w-screen">
@@ -47,19 +67,19 @@ const MyPost = () => {
           data.map((item) => (
             <div
               key={item._id}
-              className=" relative flex flex-col h-48 md:basis-1/3 basis-1/2 gap-3 bg-slate-100 text-sm border"
+              className=" relative rounded-lg flex flex-col h-48 md:basis-1/3 basis-1/2 gap-3 bg-slate-100 border text-sm"
             >
               {item.images === "" ? (
                 <p className=" pl-2 pt-2">{item.text}</p>
               ) : (
                 <img
-                  className=" bg-cover h-full object-cover w-full"
+                  className=" rounded-lg bg-cover h-full object-cover w-full"
                   src={item.images}
                 />
               )}
               <div
                 onClick={() => deletePostHandler(item._id, setRefresh, refresh)}
-                className=" cursor-pointer absolute bottom-3 right-3 bg-slate-300 p-2 rounded-xl"
+                className=" cursor-pointer absolute bottom-3 right-3 bg-slate-50 shadow-sm p-2 rounded-xl"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +87,7 @@ const MyPost = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className=" w-6 h-6"
                 >
                   <path
                     strokeLinecap="round"

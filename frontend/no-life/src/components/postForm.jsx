@@ -46,7 +46,7 @@ const PostForm = () => {
     <div className=" max-sm:mt-0 mt-20 font-geologica p-5 flex flex-col justify-center gap-4">
       <h1>Create New Post</h1>
       <hr />
-      <form className=" flex flex-col gap-2">
+      <form className=" flex flex-col gap-2 font-montserrat">
         <textarea
           className="textarea textarea-bordered max-sm:w-full w-[400px] h-[200px] bg-slate-300"
           placeholder="What's on your mind?"

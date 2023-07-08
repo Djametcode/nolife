@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginHandler } from "../handler/loginHandler";
 import { useDispatch, useSelector } from "react-redux";
-import Cookies from "js-cookie";
-import { authAction } from "../redux/store";
 
 const LoginComponents = () => {
   const navigate = useNavigate();
@@ -21,7 +19,6 @@ const LoginComponents = () => {
 
   const [text, setText] = useState();
   const [isError, setIsError] = useState(false);
-
 
   return (
     <div className=" flex justify-center items-center h-full w-full font-geologica">

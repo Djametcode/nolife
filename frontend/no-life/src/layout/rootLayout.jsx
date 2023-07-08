@@ -13,25 +13,25 @@ const RootLayout = () => {
   const location = useLocation();
   return (
     <div className=" h-screen w-screen">
-      <div
-        className={` ${
-          isLoggin ? "hidden" : "fixed"
-        } top-0 w-full z-20 bg-primary shadow-md`}
-      >
-        <HeaderComponent />
-      </div>
+      {location.pathname === "/login" || location.pathname === "/signUp" ? (
+        <div className={` fixed top-0 w-full z-20 bg-primary shadow-md`}>
+          <HeaderComponent />
+        </div>
+      ) : null}
       {isToggle && <NavMobile />}
       <div className=" flex justify-start">
         <Outlet />
       </div>
-      {isLoggin ? null : (
+      {location.pathname === "/login" || location.pathname === "/signUp" ? (
         <div className=" fixed bottom-0 w-full">
           <Footer />
         </div>
-      )}
-      <div className={` fixed bottom-0 w-full`}>
-        <NavMobileFix />
-      </div>
+      ) : null}
+      {isLoggin ? (
+        <div className={`fixed bottom-0 w-full`}>
+          <NavMobileFix />
+        </div>
+      ) : null}
     </div>
   );
 };

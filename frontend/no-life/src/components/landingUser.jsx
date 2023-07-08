@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import likeHandler from "../handler/likeHandler";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import timeConverter from "../handler/timeConverter";
 
 const LandingUser = () => {
   const navigate = useNavigate();
@@ -52,6 +53,9 @@ const LandingUser = () => {
           <div
             className={` gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_75%] w-full font-geologica p-5 border-b`}
           >
+            <div className=" absolute right-3 text-xs font-montserrat">
+              <p>{timeConverter(item.timePosted)}</p>
+            </div>
             <div className=" row-span-3">
               <div className=" flex justify-start">
                 {item.createdBy.avatar === "" ? (
@@ -136,8 +140,13 @@ const LandingUser = () => {
                 </svg>
               </div>
             </div>
-            <div className=" col-start-2 flex justify-start items-center gap-2 text-sm text-gray-400">
-              <p>{item.comments.length} reply</p>
+            <div className=" col-start-2 flex justify-start items-center gap-2 text-xs text-gray-400 font-montserrat">
+              <p
+                onClick={() => navigate(`comment-list/${item._id}`)}
+                className=" cursor-pointer"
+              >
+                {item.comments.length} reply
+              </p>
               <div className=" w-1 h-1 rounded-full bg-black"></div>
               <p>{item.like.length} likes</p>
             </div>
