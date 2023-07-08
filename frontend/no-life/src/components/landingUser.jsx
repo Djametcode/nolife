@@ -80,8 +80,12 @@ const LandingUser = () => {
               <p className=" font-montserrat text-sm">{item.text}</p>
             </div>
             {item.images === "" ? null : (
-              <div>
-                <img className=" rounded-lg" src={item.images} alt="" />
+              <div className="h-64">
+                <img
+                  className=" h-full w-full object-cover rounded-lg"
+                  src={item.images}
+                  alt=""
+                />
               </div>
             )}
             <div className=" col-start-2 flex gap-3">
