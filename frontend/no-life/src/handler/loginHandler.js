@@ -21,6 +21,7 @@ const loginHandler = async (
     const { token, user } = datas;
     await Cookies.set("token", token);
     await Cookies.set("userId", user._id);
+    await dispatch(authAction.login());
     const intervals = setInterval(() => {
       navigate("/welcome");
       clearInterval(intervals);
