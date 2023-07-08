@@ -24,7 +24,7 @@ const loginHandler = async (
     const intervals = setInterval(() => {
       navigate("/welcome");
       clearInterval(intervals);
-    }, 1000);
+    }, 3000);
     console.log(datas);
   } catch (error) {
     const errorText = error.response.data.msg;
