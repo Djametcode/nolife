@@ -5,7 +5,7 @@ const getAllUser = async () => {
   const token = Cookies.get("token");
   try {
     const response = await axios.get(
-      "https://wandering-undershirt-dog.cyclic.app0/api/v11/no-life/post/get-all-user",
+      "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-all-user",
       {
         headers: {
           Authorization: `Bearer ${token}`,
