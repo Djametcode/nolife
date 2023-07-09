@@ -26,7 +26,12 @@ const NavMobileFix = () => {
           />
         </svg>
       </div>
-      <div>
+      <div
+        onClick={() => navigate("/welcome/search")}
+        className={`${
+          location.pathname === "/welcome/search" ? "text-primary" : ""
+        } cursor-pointer`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -63,7 +68,12 @@ const NavMobileFix = () => {
           />
         </svg>
       </div>
-      <div>
+      <div
+        onClick={() => navigate("/welcome/activity")}
+        className={`${
+          location.pathname === "/welcome/activity" ? "text-primary" : ""
+        } cursor-pointer`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

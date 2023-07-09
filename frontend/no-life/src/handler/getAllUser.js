@@ -1,11 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const getCurrentUser = async () => {
+const getAllUser = async () => {
   const token = Cookies.get("token");
   try {
     const response = await axios.get(
-      `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-current-user/`,
+      "https://wandering-undershirt-dog.cyclic.app0/api/v11/no-life/post/get-all-user",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -13,11 +13,10 @@ const getCurrentUser = async () => {
       }
     );
     const result = await response.data;
-
     return result;
   } catch (error) {
     console.log(error);
   }
 };
 
-export default getCurrentUser;
+export default getAllUser;

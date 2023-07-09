@@ -25,11 +25,27 @@ const userSchema = new Schema({
     type: String,
     default: "",
   },
+  follower: {
+    type: Array,
+    default: [],
+  },
+  notification: {
+    type: Array,
+    default: [],
+  },
 });
 
-userSchema.pre("save", async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
   return this.password;
 });
 

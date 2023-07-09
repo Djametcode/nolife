@@ -6,16 +6,15 @@ import { Outlet, useNavigate } from "react-router-dom";
 import editProfileHandler from "../handler/editProfileHandler";
 
 const Account = () => {
-  const userId = Cookies.get("userId");
   const token = Cookies.get("token");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/get-current-user/${userId}`,
+        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-current-user/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -25,6 +24,7 @@ const Account = () => {
       const result = await response.data;
       setUser(result.data);
       console.log("I am called");
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -42,65 +42,73 @@ const Account = () => {
 
   return (
     <div className=" md: max-w-2xl max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-100">
-      <div className=" flex justify-between">
-        <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
-          {update ? (
-            <input
-              className=" font-montserrat placeholder:text-sm focus:outline-none border rounded-lg p-1"
-              type="text"
-              placeholder={user.username}
-              onChange={(e) => setUsername(e.target.value)}
-              value={newUsername}
-            />
-          ) : (
-            <p className=" text-xl">{user.username}</p>
-          )}
-          {update ? (
-            <input
-              className=" placeholder:text-sm font-montserrat pb-24 max-w-md focus:outline-none border rounded-lg p-1"
-              type="text"
-              placeholder="New Bio ..."
-            />
-          ) : (
-            <p className=" font-montserrat text-xs">No Bio Yet</p>
-          )}
-          {update ? (
-            <Fragment>
-              <label className=" font-montserrat text-xs italic text-warning">
-                Put file to update avatar
-              </label>
-              <input
-                type="file"
-                className="file-input font-montserrat text-xs file-input-bordered file-input-acent w-full max-w-xs"
-                onChange={(e) => setAvatar(e.target.files[0])}
-              />
-            </Fragment>
-          ) : null}
-        </div>
-        <div className=" p-7">
-          {user.avatar === "" ? (
-            <svg
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className=" w-20 h-20"
-            >
-              <path
-                clipRule="evenodd"
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
-              />
-            </svg>
-          ) : (
-            <div className="avatar">
-              <div className="w-24 rounded-full">
-                <img src={user.avatar} />
+      {user.map((item) => (
+        <>
+          {" "}
+          <div className=" flex justify-between">
+            <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
+              {update ? (
+                <input
+                  className=" font-montserrat placeholder:text-sm focus:outline-none border rounded-lg p-1"
+                  type="text"
+                  placeholder={item.username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={newUsername}
+                />
+              ) : (
+                <p className=" text-xl">{item.username}</p>
+              )}
+              {update ? (
+                <input
+                  className=" placeholder:text-sm font-montserrat pb-24 max-w-md focus:outline-none border rounded-lg p-1"
+                  type="text"
+                  placeholder="New Bio ..."
+                />
+              ) : (
+                <p className=" font-montserrat text-xs">No Bio Yet</p>
+              )}
+              {update ? (
+                <Fragment>
+                  <label className=" font-montserrat text-xs italic text-warning">
+                    Put file to update avatar
+                  </label>
+                  <input
+                    type="file"
+                    className="file-input font-montserrat text-xs file-input-bordered file-input-acent w-full max-w-xs"
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                  />
+                </Fragment>
+              ) : null}
+              <div className=" text-sm">
+                <p>{item.follower.length} follower</p>
               </div>
             </div>
-          )}
-        </div>
-      </div>
+            <div className=" p-7">
+              {item.avatar === "" ? (
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  className=" w-20 h-20"
+                >
+                  <path
+                    clipRule="evenodd"
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
+                  />
+                </svg>
+              ) : (
+                <div className="avatar">
+                  <div className="w-24 rounded-full">
+                    <img src={item.avatar} />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      ))}
       <div className=" flex justify-around font-montserrat text-sm p-3 gap-2">
         {update ? (
           <Fragment>
@@ -139,7 +147,7 @@ const Account = () => {
           </button>
         )}
       </div>
-      <div className=" flex justify-around text-sm">
+      <div className=" flex justify-around text-sm font-montserrat">
         <button
           onClick={() => navigate("/welcome/account")}
           className={`${

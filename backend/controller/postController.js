@@ -2,6 +2,8 @@ const User = require("../model/userModel");
 const Post = require("../model/postModel");
 const Like = require("../model/likeModel");
 const Comment = require("../model/commentModel");
+const Follower = require("../model/followerModel");
+const Notif = require("../model/notifModel");
 const cloudinary = require("../utils/cloudinary");
 
 const createPost = async (req, res) => {
@@ -49,6 +51,7 @@ const createPost = async (req, res) => {
 
     const data = await Post.create(post);
     await user.posts.push(data);
+    await user.save();
 
     return res.status(200).json({ msg: "Success", user });
   } catch (error) {
@@ -241,7 +244,6 @@ const getCommentPostId = async (req, res) => {
   }
 };
 
-
 const getMyComment = async (req, res) => {
   const { id } = req.query;
   try {
@@ -304,6 +306,85 @@ const updateAvatar = async (req, res) => {
   }
 };
 
+const getAllUser = async (req, res) => {
+  try {
+    const data = await User.find({});
+
+    return res.status(200).json({ msg: "Success", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const followUser = async (req, res) => {
+  const { id } = req.params;
+  const { userId, username } = req.user;
+  try {
+    if (id === userId) {
+      return res
+        .status(400)
+        .json({ msg: "Gak bisa follow diri sendiri wkwkwk" });
+    }
+
+    const check = await Follower.exists({
+      createdBy: userId,
+      target: id,
+    });
+
+    console.log(check);
+
+    if (check) {
+      return res.status(400).json({ msg: "Already follow" });
+    }
+
+    const follower = await Follower.create({
+      createdBy: userId,
+      target: id,
+    });
+
+    const notif = await Notif.create({
+      text: `${username} following you !`,
+    });
+
+    const user = await User.findOne({ _id: id });
+    await user.follower.push(follower);
+    await user.notification.push(notif);
+    await user.save();
+
+    return res.status(200).json({ msg: "Success message and notify", user });
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({ msg: "Internal server error" });
+  }
+};
+
+const getCurrentUser = async (req, res) => {
+  try {
+    const data = await User.findOne({ _id: req.user.userId });
+
+    if (!data) {
+      return res.status(404).json({ msg: "User not found please login?" });
+    }
+
+    return res.status(200).json({
+      msg: "success",
+      data: [
+        {
+          username: data.username,
+          email: data.email,
+          post: data.posts,
+          avatar: data.avatar,
+          follower: data.follower,
+          notif: data.notification,
+        },
+      ],
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   createPost,
   updatePost,
@@ -318,4 +399,7 @@ module.exports = {
   getAllLike,
   updateAvatar,
   getMyComment,
+  getAllUser,
+  followUser,
+  getCurrentUser,
 };

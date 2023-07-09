@@ -3,13 +3,10 @@ import deletePostHandler from "../handler/deletePostHandler";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const MyPost = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(0);
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const getMyPost = async () => {
     try {

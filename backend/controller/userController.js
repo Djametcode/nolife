@@ -41,28 +41,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-const getCurrentUser = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const data = await User.findOne({ _id: id });
-
-    if (!data) {
-      return res.status(404).json({ msg: "User not found please login?" });
-    }
-
-    return res.status(200).json({
-      msg: "success",
-      data: {
-        username: data.username,
-        email: data.email,
-        post: data.posts,
-        avatar: data.avatar,
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 
-module.exports = { registUser, loginUser, getCurrentUser };
+module.exports = { registUser, loginUser };

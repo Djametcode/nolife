@@ -14,6 +14,9 @@ const {
   getCommentPostId,
   updateAvatar,
   getMyComment,
+  getAllUser,
+  followUser,
+  getCurrentUser,
 } = require("../controller/postController");
 const upload = require("../middleware/multer");
 
@@ -30,5 +33,8 @@ router.delete("/delete-comment/:id", deleteComment);
 router.get("/comment", getCommentPostId);
 router.patch("/update-avatar/:id", upload, updateAvatar);
 router.get("/my-comment", getMyComment);
+router.get("/get-all-user", getAllUser);
+router.post("/follow/:id", followUser);
+router.get("/get-current-user", getCurrentUser);
 
 module.exports = router;

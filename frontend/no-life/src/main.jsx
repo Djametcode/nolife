@@ -29,6 +29,8 @@ import Cookies from "js-cookie";
 import Comments from "./components/comment";
 import CommentList from "./components/commentList";
 import Reply from "./components/reply";
+import SearchComponent from "./components/search";
+import Activity from "./components/activity";
 
 const token = Cookies.get("token");
 const router = createBrowserRouter([
@@ -204,6 +206,16 @@ const routerElement = createBrowserRouter(
         <Route
           path="comment-list/:id"
           element={token ? <CommentList /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="search"
+          element={
+            token ? <SearchComponent /> : <Navigate to="/login" replace />
+          }
+        />
+        <Route
+          path="activity"
+          element={token ? <Activity /> : <Navigate to="/login" replace />}
         />
       </Route>
     </Route>

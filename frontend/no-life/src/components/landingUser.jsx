@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import likeHandler from "../handler/likeHandler";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import timeConverter from "../handler/timeConverter";
 
 const LandingUser = () => {

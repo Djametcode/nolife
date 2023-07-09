@@ -15,7 +15,6 @@ const Comments = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [commentCount, commentAdded] = useState(0);
-  const navigate = useNavigate();
   const [user, setUser] = useState({});
 
   const getAllPost = async () => {
