@@ -43,7 +43,7 @@ const LandingUser = () => {
     }, 3000);
   }, [likes]);
   return (
-    <div className=" flex flex-col items-center max-sm:pb-14 w-full pb-20">
+    <div className=" md:bg-slate-200 md:mt-12 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>
@@ -51,7 +51,7 @@ const LandingUser = () => {
       ) : (
         data.map((item) => (
           <div
-            className={` gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_75%] w-full font-geologica p-5 border-b`}
+            className={` relative gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_75%] w-full font-geologica p-5 border-b`}
           >
             <div className=" absolute right-3 text-xs font-montserrat">
               <p>{timeConverter(item.timePosted)}</p>
@@ -80,12 +80,8 @@ const LandingUser = () => {
               <p className=" font-montserrat text-sm">{item.text}</p>
             </div>
             {item.images === "" ? null : (
-              <div className="h-64">
-                <img
-                  className=" h-full w-full object-cover rounded-lg"
-                  src={item.images}
-                  alt=""
-                />
+              <div>
+                <img className=" rounded-lg" src={item.images} alt="" />
               </div>
             )}
             <div className=" col-start-2 flex gap-3">

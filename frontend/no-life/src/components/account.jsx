@@ -2,7 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Fragment, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import editProfileHandler from "../handler/editProfileHandler";
 
 const Account = () => {
@@ -10,11 +10,12 @@ const Account = () => {
   const token = Cookies.get("token");
   const [user, setUser] = useState({});
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/get-current-user/${userId}`,
+        `http://localhost:3000/api/v11/no-life/get-current-user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,7 +41,7 @@ const Account = () => {
   console.log(avatar);
 
   return (
-    <div className=" max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-100">
+    <div className=" md: max-w-2xl max-sm:mt-0 mt-16 font-geologica flex flex-col gap-3 bg-slate-100">
       <div className=" flex justify-between">
         <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
           {update ? (
@@ -138,7 +139,29 @@ const Account = () => {
           </button>
         )}
       </div>
-      <div className=" m-5 max-sm:m-0">
+      <div className=" flex justify-around text-sm">
+        <button
+          onClick={() => navigate("/welcome/account")}
+          className={`${
+            location.pathname === "/welcome/account"
+              ? " border-b border-black"
+              : ""
+          } w-full p-3`}
+        >
+          Postingan
+        </button>
+        <button
+          onClick={() => navigate("/welcome/account/reply")}
+          className={`${
+            location.pathname === "/welcome/account/reply"
+              ? " border-b border-black"
+              : ""
+          } w-full p-3`}
+        >
+          Balasan
+        </button>
+      </div>
+      <div className=" m-5 max-sm:m-0 max-sm:pb-14">
         <Outlet />
       </div>
     </div>

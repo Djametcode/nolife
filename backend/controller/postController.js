@@ -241,6 +241,29 @@ const getCommentPostId = async (req, res) => {
   }
 };
 
+
+const getMyComment = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const data = await Comment.find({ createdBy: id })
+      .populate({
+        path: "postId",
+        populate: {
+          path: "createdBy",
+          select: ["username", "avatar"],
+        },
+      })
+      .populate({
+        path: "createdBy",
+        select: ["username", "avatar"],
+      });
+
+    return res.status(200).json({ msg: "Success", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteComment = async (req, res) => {
   const { id } = req.params;
 
@@ -294,4 +317,5 @@ module.exports = {
   deleteComment,
   getAllLike,
   updateAvatar,
+  getMyComment,
 };

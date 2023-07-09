@@ -13,6 +13,7 @@ const {
   getPostById,
   getCommentPostId,
   updateAvatar,
+  getMyComment,
 } = require("../controller/postController");
 const upload = require("../middleware/multer");
 
@@ -28,5 +29,6 @@ router.post("/give-comment/:id", giveComment);
 router.delete("/delete-comment/:id", deleteComment);
 router.get("/comment", getCommentPostId);
 router.patch("/update-avatar/:id", upload, updateAvatar);
+router.get("/my-comment", getMyComment);
 
 module.exports = router;

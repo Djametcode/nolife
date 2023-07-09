@@ -3,12 +3,13 @@ import deletePostHandler from "../handler/deletePostHandler";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MyPost = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getMyPost = async () => {
     try {
@@ -38,29 +39,9 @@ const MyPost = () => {
       <div>
         <h1>{data.username}</h1>
       </div>
-      <div className=" flex justify-around text-sm">
-        <button
-          className={`${
-            location.pathname === "/welcome/account"
-              ? " border-b border-black"
-              : ""
-          } w-full p-3`}
-        >
-          Postingan
-        </button>
-        <button
-          className={`${
-            location.pathname === "/welcome/reply"
-              ? " border-b border-black"
-              : ""
-          } w-full p-3`}
-        >
-          Balasan
-        </button>
-      </div>
       <div className=" flex flex-wrap justify-start">
         {data.length === 0 ? (
-          <div className=" p-3 h-screen flex justify-center items-center w-screen">
+          <div className=" p-3 h-full flex justify-center items-center w-screen">
             <p>No post Yet .....</p>
           </div>
         ) : (

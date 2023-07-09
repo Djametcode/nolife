@@ -102,7 +102,7 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <div className=" max-sm:ml-0 ml-[325px] w-full h-full">
+      <div className=" max-sm:ml-0 ml-[325px] w-full md:justify-center md:flex h-full">
         <Outlet />
       </div>
     </div>

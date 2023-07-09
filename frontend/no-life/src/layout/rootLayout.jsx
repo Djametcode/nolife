@@ -3,13 +3,13 @@
 import { Outlet, useLocation } from "react-router-dom";
 import HeaderComponent from "../components/header";
 import Footer from "../components/footer";
-import NavMobile from "../components/navBarMobile";
-import { useSelector } from "react-redux";
+// import NavMobile from "../components/navBarMobile";
+// import { useSelector } from "react-redux";
 import NavMobileFix from "../components/navMobile";
 
 const RootLayout = () => {
-  const isToggle = useSelector((state) => state.auth.isToggle);
-  const isLoggin = useSelector((state) => state.auth.isLogin);
+  // const isToggle = useSelector((state) => state.auth.isToggle);
+  // const isLoggin = useSelector((state) => state.auth.isLogin);
   const location = useLocation();
   return (
     <div className=" h-screen w-screen">
@@ -18,8 +18,8 @@ const RootLayout = () => {
           <HeaderComponent />
         </div>
       ) : null}
-      {isToggle && <NavMobile />}
-      <div className=" flex justify-start">
+      {/* {isToggle && <NavMobile />} */}
+      <div className=" w-screen flex justify-end">
         <Outlet />
       </div>
       {location.pathname === "/login" || location.pathname === "/signUp" ? (
@@ -27,8 +27,11 @@ const RootLayout = () => {
           <Footer />
         </div>
       ) : null}
-      {isLoggin ? (
-        <div className={`fixed bottom-0 w-full`}>
+      {location.pathname === "/welcome/account" ||
+      location.pathname === "/welcome" ||
+      location.pathname === "/welcome/account/reply" ||
+      location.pathname === "/welcome/post" ? (
+        <div className={` md:hidden fixed bottom-0 w-full`}>
           <NavMobileFix />
         </div>
       ) : null}
