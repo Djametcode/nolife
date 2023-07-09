@@ -20,7 +20,7 @@ const Activity = () => {
         }
       );
       const result = await response.data;
-      setUser(result.data);
+      setUser(result.data[0]);
     } catch (error) {
       console.log(error);
     }
@@ -35,14 +35,12 @@ const Activity = () => {
       <div className=" p-3">
         <hr />
       </div>
-      <div className=" bg-slate-100 m-3 rounded-lg">
-        {user.map((item) =>
-          item.notif.map((items) => (
-            <div className=" font-geologica p-3 text-sm">
-              <p>{items.text}</p>
-            </div>
-          ))
-        )}
+      <div className=" m-2 flex flex-col gap-2">
+        {user.notif.map((items) => (
+          <div className=" bg-slate-200 font-montserrat p-3 text-sm rounded-lg">
+            <p>{items.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
