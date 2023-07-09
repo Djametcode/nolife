@@ -170,6 +170,38 @@ const giveLike = async (req, res) => {
   }
 };
 
+const deleteLike = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const likeIndexs = await Like.findOne({
+      postId: id,
+      likeCreator: req.user.userId,
+    });
+    const data = await Like.findOneAndDelete({
+      postId: id,
+      likeCreator: req.user.userId,
+    });
+
+    if (!data) {
+      return res.status(404).json({ msg: "like not found" });
+    }
+
+    const post = await Post.findOne({ _id: id });
+
+    const likeindex = post.like.indexOf(likeIndexs._id);
+
+    if (likeindex > -1) {
+      post.like.splice(likeindex, 1);
+    }
+
+    await post.save();
+
+    return res.status(200).json({ msg: "Like deleted", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getAllLike = async (req, res) => {
   const { id } = req.params;
   try {
@@ -402,4 +434,5 @@ module.exports = {
   getAllUser,
   followUser,
   getCurrentUser,
+  deleteLike,
 };

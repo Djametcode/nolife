@@ -17,6 +17,7 @@ const {
   getAllUser,
   followUser,
   getCurrentUser,
+  deleteLike,
 } = require("../controller/postController");
 const upload = require("../middleware/multer");
 
@@ -36,5 +37,6 @@ router.get("/my-comment", getMyComment);
 router.get("/get-all-user", getAllUser);
 router.post("/follow/:id", followUser);
 router.get("/get-current-user", getCurrentUser);
+router.delete("/delete-like/:id", deleteLike);
 
 module.exports = router;

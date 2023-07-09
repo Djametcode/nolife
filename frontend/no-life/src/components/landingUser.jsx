@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Cookies from "js-cookie";
@@ -13,6 +15,53 @@ const LandingUser = () => {
   const [data, setData] = useState([]);
   console.log(data);
   const [loading, setLoading] = useState(true);
+
+  const LikeComponent = (props) => {
+    return (
+      <div
+        className=" cursor-pointer"
+        onClick={() => likeHandler(props.id, dispatch)}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+          />
+        </svg>
+      </div>
+    );
+  };
+  const UnLikeComponent = (props) => {
+    return (
+      <div
+        className=" cursor-pointer"
+        onClick={() => likeHandler(props.id, dispatch)}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="red"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+          />
+        </svg>
+      </div>
+    );
+  };
 
   const getAllPost = async () => {
     try {
@@ -51,6 +100,7 @@ const LandingUser = () => {
       ) : (
         data.map((item) => (
           <div
+            key={item._id}
             className={` relative gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_75%] w-full font-geologica p-5 border-b`}
           >
             <div className=" absolute right-3 text-xs font-montserrat">
@@ -85,25 +135,13 @@ const LandingUser = () => {
               </div>
             )}
             <div className=" col-start-2 flex gap-3">
-              <div
-                className=" cursor-pointer"
-                onClick={() => likeHandler(item._id, dispatch)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
-              </div>
+              {item.like.some(
+                (items) => items.likeCreator === Cookies.get("userId")
+              ) ? (
+                <UnLikeComponent id={item._id} />
+              ) : (
+                <LikeComponent id={item._id} />
+              )}
               <div
                 className=" cursor-pointer"
                 onClick={() => navigate(`comment/${item._id}`)}
