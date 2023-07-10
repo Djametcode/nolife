@@ -20,7 +20,7 @@ const Activity = () => {
         }
       );
       const result = await response.data;
-      setUser(result.data[0]);
+      setUser(result.data[0].notif);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +36,7 @@ const Activity = () => {
         <hr />
       </div>
       <div className=" m-2 flex flex-col gap-2">
-        {user.notif.map((items) => (
+        {user.map((items) => (
           <div className=" bg-slate-200 font-montserrat p-3 text-sm rounded-lg">
             <p>{items.text}</p>
           </div>

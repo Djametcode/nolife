@@ -28,7 +28,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className=" max-sm:flex-col flex shadow-md w-full h-full">
+    <div className=" max-sm:flex-col flex shadow-md w-screen h-full">
       <div className=" max-sm:hidden max-sm:pt-0 pt-28 fixed max-sm:w-screen bg-slate-100 w-[300px] h-screen font-geologica p-10">
         <div className=" flex flex-col gap-3">
           {user.map((item) => (
@@ -77,13 +77,23 @@ const Profile = () => {
           </Link>
           <Link
             className={`rounded-lg p-2 ${
-              currentLocation === "/welcome/chat"
+              currentLocation === "/welcome/search"
                 ? "bg-primary text-white"
                 : "bg-white"
             }`}
-            to="/welcome/chat"
+            to="/welcome/search"
           >
-            Chat
+            Search
+          </Link>
+          <Link
+            className={`rounded-lg p-2 ${
+              currentLocation === "/welcome/activity"
+                ? "bg-primary text-white"
+                : "bg-white"
+            }`}
+            to="/welcome/activity"
+          >
+            Activity
           </Link>
           <Link
             to="/welcome/account"
@@ -105,7 +115,7 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <div className=" max-sm:ml-0 ml-[325px] w-full md:justify-center md:flex h-full">
+      <div className=" max-sm:ml-0 ml-[325px] w-full md:w-1/2 md:flex h-full">
         <Outlet />
       </div>
     </div>

@@ -92,7 +92,7 @@ const LandingUser = () => {
     }, 3000);
   }, [likes]);
   return (
-    <div className=" md:bg-slate-200 md:mt-12 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
+    <div className=" md:bg-slate-200 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>
@@ -103,7 +103,7 @@ const LandingUser = () => {
             key={item._id}
             className={` relative gap-y-3 grid grid-cols-[17%_85%] grid-rows-[12,5%_12,5%_75%] w-full font-geologica p-5 border-b`}
           >
-            <div className=" absolute right-3 text-xs font-montserrat">
+            <div className=" absolute right-3 top-3 text-xs font-montserrat">
               <p>{timeConverter(item.timePosted)}</p>
             </div>
             <div className=" row-span-3">

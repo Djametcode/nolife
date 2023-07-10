@@ -136,13 +136,13 @@ const Account = () => {
         ) : (
           <button
             onClick={() => setUpdate(true)}
-            className=" bg-slate-200 p-2 rounded-lg shadow-sm w-full"
+            className=" bg-slate-200 p-1 rounded-lg shadow-sm w-full"
           >
             Edit Profile
           </button>
         )}
         {update ? null : (
-          <button className=" bg-slate-200 p-2 rounded-lg shadow-sm w-full">
+          <button className=" bg-slate-200 p-1 rounded-lg shadow-sm w-full">
             Bagikan Profil
           </button>
         )}
