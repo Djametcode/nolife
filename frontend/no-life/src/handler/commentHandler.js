@@ -5,7 +5,7 @@ const commentHandler = async (postId, data, setComment, count, setCount) => {
   const token = Cookies.get("token");
   try {
     const response = await axios.post(
-      `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/give-comment/${postId}`,
+      `http://localhost:3000/api/v11/no-life/post/give-comment/${postId}`,
       data,
       {
         headers: {

@@ -50,7 +50,7 @@ const SearchComponent = () => {
     const token = Cookies.get("token");
     try {
       const response = await axios.post(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/follow/${targetUser}`,
+        `http://localhost:3000/api/v11/no-life/post/follow/${targetUser}`,
         {},
         {
           headers: {

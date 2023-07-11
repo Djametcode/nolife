@@ -21,7 +21,7 @@ const Comments = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-all-post",
+        "http://localhost:3000/api/v11/no-life/post/get-all-post",
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,

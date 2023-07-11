@@ -14,7 +14,7 @@ const Account = () => {
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-current-user/`,
+        `http://localhost:3000/api/v11/no-life/post/get-current-user/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,8 +45,45 @@ const Account = () => {
       {user.map((item) => (
         <>
           {" "}
-          <div className=" flex justify-between">
-            <div className=" p-5 font-geologica font-extrabold flex flex-col gap-3">
+          <div className=" grid grid-cols-[25%_75%] w-full p-5">
+            <div>
+              {item.avatar === "" ? (
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  className=" w-20 h-20"
+                >
+                  <path
+                    clipRule="evenodd"
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
+                  />
+                </svg>
+              ) : (
+                <div className="avatar">
+                  <div className=" w-16 rounded-full">
+                    <img src={item.avatar} />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className=" text-sm flex justify-center items-center gap-3 font-geologica">
+              <div className=" flex flex-col items-center justify-start">
+                <p>{item.post.length}</p>
+                <p>Post</p>
+              </div>
+              <div className=" flex flex-col items-center justify-start">
+                <p>{item.post.length}</p>
+                <p>Follower</p>
+              </div>
+              <div className=" flex flex-col items-center justify-start">
+                <p>{item.post.length}</p>
+                <p>Following</p>
+              </div>
+            </div>
+            <div className=" font-geologica font-extrabold flex flex-col gap-3 w-full">
               {update ? (
                 <input
                   className=" font-montserrat placeholder:text-sm focus:outline-none border rounded-lg p-1"
@@ -56,7 +93,11 @@ const Account = () => {
                   value={newUsername}
                 />
               ) : (
-                <p className=" text-xl">{item.username}</p>
+                <div className="">
+                  <div>
+                    <p className=" text-xl">{item.username}</p>
+                  </div>
+                </div>
               )}
               {update ? (
                 <input
@@ -79,36 +120,11 @@ const Account = () => {
                   />
                 </Fragment>
               ) : null}
-              <div className=" text-sm">
-                <p>{item.follower.length} follower</p>
-              </div>
-            </div>
-            <div className=" p-7">
-              {item.avatar === "" ? (
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  className=" w-20 h-20"
-                >
-                  <path
-                    clipRule="evenodd"
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z"
-                  />
-                </svg>
-              ) : (
-                <div className="avatar">
-                  <div className="w-24 rounded-full">
-                    <img src={item.avatar} />
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </>
       ))}
+
       <div className=" flex justify-around font-montserrat text-sm p-3 gap-2">
         {update ? (
           <Fragment>
