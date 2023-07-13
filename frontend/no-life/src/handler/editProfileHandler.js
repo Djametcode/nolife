@@ -17,7 +17,7 @@ const editProfileHandler = async (
 
     const item = Object.fromEntries(userUpdate);
     const response = await axios.patchForm(
-      `https://wandering-undershirt-dog.cyclic.app /api/v11/no-life/post/update-avatar/${id}`,
+      `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/update-avatar/${id}`,
       item,
       {
         headers: {

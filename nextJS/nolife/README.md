@@ -12,7 +12,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [https://wandering-undershirt-dog.cyclic.app ](https://wandering-undershirt-dog.cyclic.app ) with your browser to see the result.
+Open [https://wandering-undershirt-dog.cyclic.app](https://wandering-undershirt-dog.cyclic.app) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
