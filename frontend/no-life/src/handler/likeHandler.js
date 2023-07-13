@@ -7,7 +7,7 @@ const likeHandler = async (postId, dispatch) => {
   const token = Cookies.get("token");
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/v11/no-life/post/give-like/${postId}`,
+      `https://wandering-undershirt-dog.cyclic.app /api/v11/no-life/post/give-like/${postId}`,
       {},
       {
         headers: {

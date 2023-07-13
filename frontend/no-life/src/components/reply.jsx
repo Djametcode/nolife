@@ -14,7 +14,7 @@ const Reply = () => {
   const deleteComment = async (postId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v11/no-life/post/delete-comment/${postId}`,
+        `https://wandering-undershirt-dog.cyclic.app /api/v11/no-life/post/delete-comment/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const Reply = () => {
   const getMyReply = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v11/no-life/post/my-comment?id=${userId}`,
+        `https://wandering-undershirt-dog.cyclic.app /api/v11/no-life/post/my-comment?id=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

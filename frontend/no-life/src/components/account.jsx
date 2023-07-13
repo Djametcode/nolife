@@ -14,7 +14,7 @@ const Account = () => {
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v11/no-life/post/get-current-user/`,
+        `https://wandering-undershirt-dog.cyclic.app /api/v11/no-life/post/get-current-user/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
