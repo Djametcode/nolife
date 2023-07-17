@@ -31,6 +31,8 @@ import CommentList from "./components/commentList";
 import Reply from "./components/reply";
 import SearchComponent from "./components/search";
 import Activity from "./components/activity";
+import ChatDetail from "./components/chatDetail";
+import NewChat from "./components/newChat";
 
 const token = Cookies.get("token");
 const router = createBrowserRouter([
@@ -216,6 +218,14 @@ const routerElement = createBrowserRouter(
         <Route
           path="activity"
           element={token ? <Activity /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="chat/:id"
+          element={token ? <ChatDetail /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="new-chat"
+          element={token ? <NewChat /> : <Navigate to="/login" replace />}
         />
       </Route>
     </Route>

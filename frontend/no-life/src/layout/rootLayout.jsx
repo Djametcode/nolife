@@ -49,7 +49,10 @@ const RootLayout = () => {
           } font-geologica z-50 flex justify-start items-center`}
         >
           <h1 className=" text-xl">No Life</h1>
-          <div className=" absolute right-4 flex items-center">
+          <div
+            onClick={() => navigate("/welcome/chat")}
+            className=" cursor-pointer absolute right-4 flex items-center"
+          >
             <svg
               fill="currentColor"
               viewBox="0 0 20 20"
