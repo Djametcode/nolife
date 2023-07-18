@@ -58,10 +58,10 @@ const getChatById = async (req, res) => {
 const getMyChat = async (req, res) => {
   try {
     const chat = await Chat.find({
-      // $or: [
-      //   { "participants.user1": req.user.userId },
-      //   { "participants.user2": req.user.userId },
-      // ],
+      $or: [
+        { "participants.user1": req.user.userId },
+        { "participants.user2": req.user.userId },
+      ],
     })
       .populate({ path: "participants.user1", select: ["username", "avatar"] })
       .populate({ path: "participants.user2", select: ["username", "avatar"] })

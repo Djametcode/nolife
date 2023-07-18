@@ -69,18 +69,14 @@ const Account = () => {
                 </div>
               )}
             </div>
-            <div className=" text-sm flex justify-center items-center gap-3 font-geologica">
+            <div className=" text-sm flex justify-center items-center gap-3 font-montserrat-">
               <div className=" flex flex-col items-center justify-start">
                 <p>{item.post.length}</p>
                 <p>Post</p>
               </div>
               <div className=" flex flex-col items-center justify-start">
-                <p>{item.post.length}</p>
+                <p>{item.follower.length}</p>
                 <p>Follower</p>
-              </div>
-              <div className=" flex flex-col items-center justify-start">
-                <p>{item.post.length}</p>
-                <p>Following</p>
               </div>
             </div>
             <div className=" font-geologica font-extrabold flex flex-col gap-3 w-full">

@@ -30,7 +30,7 @@ const Chat = () => {
     getMychat();
   }, []);
   return (
-    <div className=" font-geologica p-3 flex flex-col justify-start items-start h-screen">
+    <div className=" font-geologica flex flex-col justify-start items-start h-screen">
       <div className=" w-full flex h-14 gap-5 justify-start items-center border-b font-geologic pl-5">
         <Link to="..">
           <svg

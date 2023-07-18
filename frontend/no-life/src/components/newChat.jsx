@@ -193,7 +193,7 @@ const NewChat = () => {
                   <hr />
                 </div>
                 <div
-                  onClick={() => followAccount(item._id, count, setCount)}
+                  onClick={() => chatAccount(item._id)}
                   className=" cursor-pointer absolute right-5 text-sm"
                 >
                   <svg
