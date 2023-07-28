@@ -163,6 +163,13 @@ const giveLike = async (req, res) => {
     await post.like.push(likeData);
     await post.save();
 
+    // const user = await User.findOne({ _id: createdBy });
+
+    // const indexPost = user.posts.indexOf(post._id);
+    // post[indexPost].like.push(likeData);
+
+    // await user.save();
+
     return res.status(200).json({ msg: "Success", post });
   } catch (error) {
     console.log(error);
