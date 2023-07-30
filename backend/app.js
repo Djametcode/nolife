@@ -1,17 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const { Server } = require("socket.io");
-const http = require("http").createServer(app);
-const io = new Server(http, {
-  cors: {
-    origin: ["*"],
-  },
-});
+// const { Server } = require("socket.io");
+// const http = require("http").createServer(app);
+// const io = new Server(http, {
+//   cors: {
+//     origin: ["*"],
+//   },
+// });
 const port = 3000;
 const cors = require("cors");
 
-https://nolife-backend.vercel.app/
 
 //socket io impelentation
 
@@ -35,13 +34,13 @@ app.use("/api/v11/no-life/chat", auth, chatRoute);
 const connectDB = require("./db/connectDB");
 
 //socket io handler
-io.on("connect", (socket) => {
-  console.log("A user connected");
+// io.on("connect", (socket) => {
+//   console.log("A user connected");
 
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("A user disconnected");
+//   });
+// });
 
 async function start() {
   try {
