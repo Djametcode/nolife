@@ -11,7 +11,7 @@ const Chat = () => {
   const getMychat = async () => {
     try {
       const response = await axios.get(
-        "https://nolife-backend.vercel.app/api/v11/no-life/chat/my-chat",
+        "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/chat/my-chat",
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,

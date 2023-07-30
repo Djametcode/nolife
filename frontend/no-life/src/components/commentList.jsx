@@ -13,7 +13,7 @@ const CommentList = () => {
   const getCommentList = async () => {
     try {
       const response = await axios.get(
-        `https://nolife-backend.vercel.app/api/v11/no-life/post/comment?id=${id}`,
+        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/comment?id=${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
