@@ -26,7 +26,7 @@ const PostForm = () => {
     try {
       setSending(true);
       const response = await axios.post(
-        "https://nolife-backend.vercel.app//api/v11/no-life/post/create-post",
+        "https://nolife-backend.vercel.app/api/v11/no-life/post/create-post",
         data,
         {
           headers: {

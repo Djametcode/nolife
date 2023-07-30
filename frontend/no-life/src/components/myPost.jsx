@@ -11,7 +11,7 @@ const MyPost = () => {
   const getMyPost = async () => {
     try {
       const response = await axios.get(
-        "https://nolife-backend.vercel.app//api/v11/no-life/post/get-my-post",
+        "https://nolife-backend.vercel.app/api/v11/no-life/post/get-my-post",
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,

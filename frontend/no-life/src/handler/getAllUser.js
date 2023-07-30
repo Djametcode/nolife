@@ -5,7 +5,7 @@ const getAllUser = async () => {
   const token = Cookies.get("token");
   try {
     const response = await axios.get(
-      "https://nolife-backend.vercel.app//api/v11/no-life/post/get-all-user",
+      "https://nolife-backend.vercel.app/api/v11/no-life/post/get-all-user",
       {
         headers: {
           Authorization: `Bearer ${token}`,

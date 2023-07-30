@@ -4,7 +4,7 @@ const loginHandler = async (data) => {
   console.log(data);
   try {
     const response = await axios.post(
-      "https://nolife-backend.vercel.app/api/v11/no-life/login-user",
+      "https://nolife-backend.vercel.appapi/v11/no-life/login-user",
       data
     );
     const result = await response.data;

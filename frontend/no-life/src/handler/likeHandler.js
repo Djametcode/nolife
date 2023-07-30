@@ -7,7 +7,7 @@ const likeHandler = async (postId, dispatch) => {
   const token = Cookies.get("token");
   try {
     const response = await axios.post(
-      `https://nolife-backend.vercel.app//api/v11/no-life/post/give-like/${postId}`,
+      `https://nolife-backend.vercel.app/api/v11/no-life/post/give-like/${postId}`,
       {},
       {
         headers: {
