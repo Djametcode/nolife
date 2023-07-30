@@ -1,8 +1,5 @@
 import { headers } from "next/headers";
 
-async function getAllPost() {
-  const headerInstance = headers();
-}
 
 export default async function LandingComponents() {
   return (

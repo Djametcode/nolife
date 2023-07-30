@@ -1,8 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
 
 export default function Home() {
+  useEffect(() => {
+    const socket = io("http://localhost:3000"); // Replace with your server's URL
+    socket.on("connect", () => {
+      console.log("Connected to the server");
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Disconnected from the server");
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   return (
     <div className=" bg-slate-50 h-screen flex justify-center items-center">
       <div className=" font-montserrat">
