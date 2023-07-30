@@ -14,7 +14,7 @@ const Account = () => {
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/get-current-user/`,
+        `https://nolife-backend.vercel.app//api/v11/no-life/post/get-current-user/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

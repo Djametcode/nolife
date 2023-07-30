@@ -11,6 +11,8 @@ const io = new Server(http, {
 const port = 3000;
 const cors = require("cors");
 
+https://nolife-backend.vercel.app/
+
 //socket io impelentation
 
 //route import

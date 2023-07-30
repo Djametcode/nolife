@@ -13,7 +13,7 @@ const ChatDetail = () => {
   const getChatDetail = async () => {
     try {
       const response = await axios.get(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/chat/chat-detail/${id}`,
+        `https://nolife-backend.vercel.app//api/v11/no-life/chat/chat-detail/${id}`,
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,
@@ -37,7 +37,7 @@ const ChatDetail = () => {
   const sendMessage = async (id, state, setState) => {
     try {
       const response = await axios.post(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/chat/send-msg/${id}`,
+        `https://nolife-backend.vercel.app//api/v11/no-life/chat/send-msg/${id}`,
         data,
         {
           headers: {

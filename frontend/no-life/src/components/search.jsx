@@ -50,7 +50,7 @@ const SearchComponent = () => {
     const token = Cookies.get("token");
     try {
       const response = await axios.post(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/follow/${targetUser}`,
+        `https://nolife-backend.vercel.app//api/v11/no-life/post/follow/${targetUser}`,
         {},
         {
           headers: {

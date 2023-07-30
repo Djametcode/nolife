@@ -13,7 +13,7 @@ const loginHandler = async (
   event.preventDefault();
   try {
     const response = await axios.post(
-      "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/login-user",
+      "https://nolife-backend.vercel.app//api/v11/no-life/login-user",
       item
     );
     const datas = await response.data;

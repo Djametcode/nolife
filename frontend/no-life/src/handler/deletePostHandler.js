@@ -5,7 +5,7 @@ const deletePostHandler = async (postId, refresher, refreshState) => {
   const token = Cookies.get("token");
   try {
     const response = await axios.delete(
-      `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/post/delete-post/${postId}`,
+      `https://nolife-backend.vercel.app//api/v11/no-life/post/delete-post/${postId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

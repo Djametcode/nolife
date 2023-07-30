@@ -50,7 +50,7 @@ const NewChat = () => {
     const token = Cookies.get("token");
     try {
       const response = await axios.post(
-        `https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/chat/create-chat?user2=${user2}`,
+        `https://nolife-backend.vercel.app//api/v11/no-life/chat/create-chat?user2=${user2}`,
         {},
         {
           headers: {
