@@ -21,21 +21,21 @@ const LoginComponents = () => {
   const [text, setText] = useState();
   const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    const socket = io.connect("http://localhost:3000");
+  // useEffect(() => {
+  //   const socket = io.connect("http://localhost:3000");
 
-    socket.on("connect", () => {
-      console.log("server connected");
-    });
+  //   socket.on("connect", () => {
+  //     console.log("server connected");
+  //   });
 
-    socket.on("disconnect", () => {
-      console.log("server disconnect");
-    });
+  //   socket.on("disconnect", () => {
+  //     console.log("server disconnect");
+  //   });
 
-    return () => {
-      console.log("rusak");
-    };
-  }, []);
+  //   return () => {
+  //     console.log("rusak");
+  //   };
+  // }, []);
 
   return (
     <div className=" flex justify-center items-center h-full w-full font-geologica">
