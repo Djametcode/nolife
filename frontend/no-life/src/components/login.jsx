@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginHandler } from "../handler/loginHandler";
 import { useDispatch, useSelector } from "react-redux";
