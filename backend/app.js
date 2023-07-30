@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
+const port = 3000;
+
 // const { Server } = require("socket.io");
 // const http = require("http").createServer(app);
 // const io = new Server(http, {
@@ -8,9 +11,6 @@ const app = express();
 //     origin: ["*"],
 //   },
 // });
-const port = 3000;
-const cors = require("cors");
-
 
 //route import
 const authRoute = require("./route/userRoute");
@@ -18,11 +18,7 @@ const postRoute = require("./route/postRoute");
 const chatRoute = require("./route/chatRoute");
 const auth = require("./middleware/auth");
 
-app.use(
-  cors({
-    origin: ["*"],
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use("/api/v11/no-life/", authRoute);
 app.use("/api/v11/no-life/post", auth, postRoute);
