@@ -12,8 +12,6 @@ const port = 3000;
 const cors = require("cors");
 
 
-//socket io impelentation
-
 //route import
 const authRoute = require("./route/userRoute");
 const postRoute = require("./route/postRoute");
