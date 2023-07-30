@@ -47,7 +47,7 @@ async function start() {
     await connectDB(process.env.MONGO_URL);
     console.log("connected");
 
-    http.listen(port, console.log(`Server running ....`));
+    app.listen(port, console.log(`Server running ....`));
   } catch (error) {
     console.log(error);
   }
