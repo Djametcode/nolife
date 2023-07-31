@@ -25,7 +25,7 @@ const ProfileComponent = () => {
   return (
     <div className=" pt-16 pb-0 md:max-w-2xl max-sm:mt-0 mt-16 font-geologica flex flex-col">
       {user.map((item) => (
-        <>
+        <div key={item._id}>
           <div className=" grid grid-cols-[25%_75%] w-full p-5 pt-9 pb-0">
             <div className=" flex items-center">
               {item.avatar === "" ? (
@@ -100,7 +100,7 @@ const ProfileComponent = () => {
               </div>
             )}
           </div>
-        </>
+        </div>
       ))}
       <div className=" flex justify-around font-montserrat text-sm p-3 gap-2">
         {update ? (

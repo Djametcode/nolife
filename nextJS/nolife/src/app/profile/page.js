@@ -2,13 +2,18 @@
 
 import { useEffect, useState } from "react";
 import getMyPost from "@/handler/getMyPost";
+import getCurrentUser from "@/handler/getCurrentUser";
 
 export default function Profile() {
   const [data, setData] = useState([]);
+  const [user, setUser] = useState([]);
   const getData = async () => {
     try {
       const item = await getMyPost();
+      const user = await getCurrentUser();
+      console.log(user);
       setData(item.data);
+      setUser(user.data[0]);
       console.log(item);
     } catch (error) {
       console.log(error);
@@ -20,7 +25,7 @@ export default function Profile() {
   return (
     <div className=" font-montserrat max-sm:h-full md:pb-12 max-sm:pb-14 flex flex-col gap-2 p-3">
       <div>
-        <h1>{data.username}</h1>
+        <h1>{user.username}</h1>
       </div>
       <div className=" flex flex-wrap justify-start">
         {data.length === 0 ? (
