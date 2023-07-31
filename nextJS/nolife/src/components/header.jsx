@@ -7,7 +7,7 @@ const HeaderComponents = () => {
       className={`${
         path === "/auth" || path === "/auth/regist"
           ? "bg-primary"
-          : "bg-slate-100"
+          : "bg-slate-200"
       } w-full h-16 flex justify-start pl-5 text-xl items-center font-geologica ${
         path === "/auth" || path === "/auth/regist"
           ? "text-white"
