@@ -101,7 +101,7 @@ export default function ProfileComponent() {
           </div>
         </>
       ))}
-
+      {/* 
       <div className=" flex justify-around font-montserrat text-sm p-3 gap-2">
         {update ? (
           <Fragment>
@@ -139,8 +139,8 @@ export default function ProfileComponent() {
             Bagikan Profil
           </button>
         )}
-      </div>
-      <div className=" flex justify-around text-sm font-montserrat">
+      </div> */}
+      {/* <div className=" flex justify-around text-sm font-montserrat">
         <button
           onClick={() => navigate("/welcome/account")}
           className={`${
@@ -161,7 +161,7 @@ export default function ProfileComponent() {
         >
           Balasan
         </button>
-      </div>
+      </div> */}
       <div className=" m-5 max-sm:m-0 max-sm:pb-14"></div>
     </div>
   );
