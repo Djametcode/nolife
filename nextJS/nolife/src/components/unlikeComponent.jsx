@@ -1,3 +1,5 @@
+"use client";
+
 const UnLikeComponent = (props) => {
   return (
     <div

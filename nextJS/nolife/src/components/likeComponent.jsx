@@ -1,3 +1,5 @@
+"use client";
+
 import likeHandler from "@/handler/likeHandler";
 import { useDispatch } from "react-redux";
 
