@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 const Activity = () => {
   const token = Cookies.get("token");
   const [user, setUser] = useState([]);
-  console.log(user);
 
   const getCurrentUser = async () => {
     try {

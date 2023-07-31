@@ -1,9 +1,31 @@
-import { headers } from "next/headers";
+"use client";
 
+import getAllPost from "@/handler/getAllPost";
+import { useEffect, useState } from "react";
+import timeConverter from "@/handler/timeConverter";
+import Cookies from "js-cookie";
+import LikeComponent from "@/components/likeComponent";
+import UnLikeComponent from "@/components/unlikeComponent";
 
-export default async function LandingComponents() {
+export default function LandingComponent() {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  const getAllData = async () => {
+    try {
+      setLoading(true);
+      const item = await getAllPost();
+      setData(item.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllData();
+  }, []);
   return (
-    <div className=" md:bg-slate-200 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
+    <div className=" md:bg-slate-200 pt-16 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>

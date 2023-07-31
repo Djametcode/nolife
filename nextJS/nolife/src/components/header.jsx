@@ -1,6 +1,19 @@
+import { usePathname } from "next/navigation";
+
 const HeaderComponents = () => {
+  const path = usePathname();
   return (
-    <div className=" bg-primary w-full h-16 flex justify-start pl-5 text-xl items-center font-geologica text-white">
+    <div
+      className={`${
+        path === "/auth" || path === "/auth/regist"
+          ? "bg-primary"
+          : "bg-slate-100"
+      } w-full h-16 flex justify-start pl-5 text-xl items-center font-geologica ${
+        path === "/auth" || path === "/auth/regist"
+          ? "text-white"
+          : "text-black"
+      }`}
+    >
       <h1>No Life</h1>
     </div>
   );

@@ -3,8 +3,12 @@
 import Link from "next/link";
 import loginHandler from "@/handler/loginHandler";
 import { useState } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
-export default function RegistAcc() {
+export default function loginComponents() {
+  const route = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,8 +21,14 @@ export default function RegistAcc() {
     event.preventDefault();
     try {
       const response = await loginHandler(userData);
+      const { msg, token, user } = response;
+      await Cookies.set("token", token);
+      await Cookies.set("userId", user._id);
+
       setEmail("");
       setPassword("");
+
+      route.push("/landing");
       console.log(response);
     } catch (error) {
       console.log(error);
