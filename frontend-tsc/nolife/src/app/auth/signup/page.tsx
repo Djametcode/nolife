@@ -34,7 +34,7 @@ export default function LoginPage() {
 
   return (
     <div className=" h-full w-full flex max-sm:flex-col">
-      <div className=" basis-1/3 max-sm:basis-full h-full flex flex-col gap-10 items-center justify-center bg-slate-50">
+      <div className=" basis-1/3 max-sm:basis-full max-sm:p-10 h-full flex flex-col gap-10 items-center justify-center bg-slate-50">
         <div className=" font-figtree text-center mb-12 mt-12 flex flex-col gap-1">
           <h1 className=" text-3xl font-extrabold font-figtree">
             Create Your Account
@@ -43,7 +43,7 @@ export default function LoginPage() {
             Create now and join with million user!
           </p>
         </div>
-        <div className=" max-sm:w-96 w-[380px] h-full">
+        <div className=" max-sm:w-96 max-sm:p-3 w-[380px] h-full">
           <form className=" flex flex-col gap-4 font-figtree">
             <div className=" flex flex-col gap-2">
               <label htmlFor="email" className=" text-sm">
