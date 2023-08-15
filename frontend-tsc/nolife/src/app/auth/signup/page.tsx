@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className=" h-full w-full flex">
+    <div className=" h-full w-full flex max-sm:flex-col">
       <div className=" basis-1/3 max-sm:basis-full h-full flex flex-col gap-10 items-center justify-center bg-slate-50">
         <div className=" font-figtree text-center mb-12 mt-12 flex flex-col gap-1">
           <h1 className=" text-3xl font-extrabold font-figtree">
