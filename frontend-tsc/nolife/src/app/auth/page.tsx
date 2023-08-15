@@ -45,7 +45,7 @@ export default function LoginPage() {
           </h1>
           <p className=" text-gray-500 text-sm">Your friends is waiting you!</p>
         </div>
-        <div className=" w-[380px] h-full">
+        <div className=" max-sm:w-96 w-[380px] h-full">
           <form className=" flex flex-col gap-4 font-figtree">
             <div className=" flex flex-col gap-2">
               <label htmlFor="email" className=" text-sm">
