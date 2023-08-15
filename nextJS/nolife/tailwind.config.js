@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         geologica: ["Geologica", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+        figtree: ["Figtree", "sans-serif"],
       },
     },
   },

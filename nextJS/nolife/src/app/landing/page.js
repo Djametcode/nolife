@@ -25,7 +25,7 @@ export default function LandingComponent() {
     getAllData();
   }, []);
   return (
-    <div className=" md:bg-slate-200 pt-16 md:max-w-2xl flex flex-col items-center max-sm:pb-14 w-full pb-20">
+    <div className=" md:bg-slate-200 pt-16 flex flex-col items-center max-sm:pb-14 w-full pb-20">
       {loading ? (
         <div className=" w-full h-screen flex justify-center items-center">
           <span className="loading loading-bars loading-md"></span>
