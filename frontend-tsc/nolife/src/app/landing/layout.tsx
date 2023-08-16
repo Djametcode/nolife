@@ -7,7 +7,7 @@ interface Children {
 export default function LandingLayout({ children }: Children) {
   return (
     <div className="flex w-full h-full">
-      <div className=" basis-1/4 pt-16 pl-16 border-r bg-slate-100 font-figtree">
+      <div className=" basis-1/6 pt-8 pl-10 border-r bg-slate-100 font-figtree">
         <SideBarLarge />
       </div>
       {children}

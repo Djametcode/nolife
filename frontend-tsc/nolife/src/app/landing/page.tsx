@@ -1,7 +1,3 @@
 export default function LandingComponent() {
-  return (
-    <div className=" basis-3/4">
-      <h1>Hello</h1>
-    </div>
-  );
+  return <div className=" basis-5/6"></div>;
 }
