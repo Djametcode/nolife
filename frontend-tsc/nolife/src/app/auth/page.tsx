@@ -5,6 +5,7 @@ import Link from "next/link";
 import loginHandler from "@/handler/loginHandler";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 /* eslint-disable @next/next/no-img-element */
 export default function LoginPage() {
@@ -26,6 +27,8 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const response = await loginHandler(data);
+      const { msg, token } = response;
+      await Cookies.set("token", token);
       setEmail("");
       setPassword("");
       console.log(response);

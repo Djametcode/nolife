@@ -3,14 +3,14 @@ import Link from "next/link";
 
 export default function SideBarLarge() {
   return (
-    <div className=" flex flex-col gap-10 items-start h-full basis-1/4">
+    <div className=" flex flex-col gap-10 items-start h-full">
       <div className=" text-3xl font-figtree">
         <h1>No Life</h1>
       </div>
       <div className=" flex flex-col gap-5 justify-start w-full h-full">
         <div className=" flex items-center gap-4">
           <Image src="/home.svg" height={30} width={30} alt={"home"} />
-          <Link className=" text-lg" href="/landing">
+          <Link className=" text-base" href="/landing">
             Beranda
           </Link>
         </div>
