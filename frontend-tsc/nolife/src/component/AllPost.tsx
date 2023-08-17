@@ -13,7 +13,7 @@ const AllPost: React.FC<Post> = ({ data }) => {
           <PostDetail
             text={item.text}
             comments={item.comments}
-            images={item.iamges}
+            images={item.images}
             likes={item.likes}
             id={item._id}
             createdBy={item.createdBy}

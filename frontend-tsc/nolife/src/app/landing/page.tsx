@@ -23,7 +23,7 @@ export default function LandingComponent() {
   }, []);
 
   return (
-    <div className=" basis-4/5">
+    <div className="">
       <AllPost data={data} />
     </div>
   );
