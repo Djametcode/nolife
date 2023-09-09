@@ -28,7 +28,7 @@ export default function Navbar() {
     getUser();
   }, []);
   return (
-    <div className=" flex justify-between p-5 w-full h-14 items-center bg-slate-50">
+    <div className=" flex justify-around gap-2 p-5 w-full h-14 items-center bg-slate-50">
       <Link href={"/landing"}>
         {path === "/landing" ? <GoHomeFill size={25} /> : <GoHome size={25} />}
       </Link>
