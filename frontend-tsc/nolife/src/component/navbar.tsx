@@ -28,20 +28,20 @@ export default function Navbar() {
     getUser();
   }, []);
   return (
-    <div className=" flex justify-around p-5 w-full h-14 items-center bg-slate-50">
-      <Link className=" w-full flex items-center" href={"/landing"}>
+    <div className=" flex justify-center p-5 w-full h-14 items-center bg-slate-50">
+      <Link className=" w-full flex justify-center " href={"/landing"}>
         {path === "/landing" ? <GoHomeFill size={25} /> : <GoHome size={25} />}
       </Link>
-      <Link className=" w-full flex items-center" href={"/"}>
+      <Link className=" w-full flex justify-center" href={"/"}>
         <GoSearch size={25} />
       </Link>
-      <Link className=" w-full flex items-center" href={"/"}>
+      <Link className="  w-full flex justify-center" href={"/"}>
         <BsPlusSquare size={25} />
       </Link>
-      <Link className=" w-full flex items-center" href={"/"}>
+      <Link className="  w-full flex justify-center" href={"/"}>
         <BiMoviePlay size={25} />
       </Link>
-      <div>
+      <div className="  w-full flex justify-center">
         {user.map((item: { avatar: string; _id: string }) => {
           return (
             <div key={item._id} className=" w-7 h-7">
