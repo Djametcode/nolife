@@ -12,6 +12,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   interface Data {
     email: string | null;
@@ -26,6 +27,7 @@ export default function LoginPage() {
   const loginUser = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await loginHandler(data);
       const { msg, token } = response;
       Cookies.set("token", token);
@@ -91,9 +93,15 @@ export default function LoginPage() {
             </div>
             <div className=" flex flex-col gap-4 mt-12">
               <div className=" flex justify-center bg-black text-white p-3 rounded-3xl">
-                <button onClick={loginUser} className=" text-sm">
-                  Sign In
-                </button>
+                {isLoading ? (
+                  <button onClick={loginUser} className=" text-sm">
+                    Signing ..
+                  </button>
+                ) : (
+                  <button onClick={loginUser} className=" text-sm">
+                    Sign In
+                  </button>
+                )}
               </div>
               <div className=" flex gap-3 justify-center border p-3 rounded-3xl">
                 <Image src="/google.svg" width={18} height={18} alt="google" />
