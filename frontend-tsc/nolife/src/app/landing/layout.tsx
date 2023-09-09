@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
+import Navbar from "@/component/navbar";
 /* eslint-disable @next/next/no-img-element */
 import SideBarLarge from "@/component/sidebar";
 import getCurrentUser from "@/handler/getCurrentUser";
@@ -61,7 +62,7 @@ export default function LandingLayout({ children }: Children) {
   ];
 
   return (
-    <div className=" max-sm:flex-col flex w-full h-full">
+    <div className=" max-sm:flex-col flex w-screen h-screen">
       <div className=" max-sm:hidden fixed w-72 h-full pt-8 pb-5 pl-10 border-r bg-slate-100 font-figtree">
         <SideBarLarge />
       </div>
@@ -119,6 +120,9 @@ export default function LandingLayout({ children }: Children) {
           </div>
         </div>
         {children}
+      </div>
+      <div className=" fixed bottom-0 w-full">
+        <Navbar />
       </div>
     </div>
   );
