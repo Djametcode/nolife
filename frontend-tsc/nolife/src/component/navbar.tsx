@@ -2,14 +2,17 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
-import { GoHome, GoSearch } from "react-icons/go";
+import { GoHome, GoSearch, GoHomeFill } from "react-icons/go";
 import { BiMoviePlay } from "react-icons/bi";
 import { BsPlusSquare } from "react-icons/bs";
 import getCurrentUser from "@/handler/getCurrentUser";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const [user, setUser] = useState([]);
+  const path = usePathname();
 
   const getUser = async () => {
     try {
@@ -26,7 +29,9 @@ export default function Navbar() {
   }, []);
   return (
     <div className=" flex justify-between p-5 w-full h-14 items-center bg-slate-50">
-      <GoHome size={25} />
+      <Link href={"/landing"}>
+        {path === "/landing" ? <GoHomeFill size={25} /> : <GoHome size={25} />}
+      </Link>
       <GoSearch size={25} />
       <BsPlusSquare size={25} />
       <BiMoviePlay size={25} />

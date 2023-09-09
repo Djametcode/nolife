@@ -8,7 +8,7 @@ interface Data {
 const registHandler = async (data: Data) => {
     try {
         const response = await axios.post(
-            "http://localhost:3000/api/v11/no-life/regist-user",
+            "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/regist-user",
             data
         );
         const result = await response.data;
