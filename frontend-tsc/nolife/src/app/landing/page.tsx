@@ -46,7 +46,7 @@ export default function LandingComponent() {
               key={item._id}
               className=" bg-slate-50 max-sm:w-full max-sm:h-[500px] max-sm:flex max-sm:flex-col font-figtree"
             >
-              <div className=" bg-slate-100 flex text-black max-sm:h-16 items-center max-sm:gap-5 max-sm:p-3">
+              <div className=" bg-slate-50 flex text-black max-sm:h-16 items-center max-sm:gap-5 max-sm:p-3">
                 <div className=" w-11 h-11">
                   <img
                     className=" w-full h-full object-cover rounded-full"
@@ -59,9 +59,9 @@ export default function LandingComponent() {
                   <BsThreeDots size={25} />
                 </div>
               </div>
-              <div className=" overflow-scroll max-sm:h-full">
+              <div className=" overflow-scroll  bg-white max-sm:h-full">
                 {item.images === "" ? (
-                  <div className=" p-5">
+                  <div className=" p-3 text-sm">
                     <p>{item.text}</p>
                   </div>
                 ) : (
@@ -72,7 +72,7 @@ export default function LandingComponent() {
                   />
                 )}
               </div>
-              <div className=" bg-slate-100">
+              <div className=" bg-slate-50">
                 <div className=" flex max-sm:gap-3 max-sm:p-3">
                   <div className=" flex items-center gap-2 text-xs">
                     <FaRegHeart size={20} />
@@ -89,27 +89,29 @@ export default function LandingComponent() {
                     <RiBookmarkLine size={20} />
                   </div>
                 </div>
-                <div className=" max-sm:text-sm max-sm:pl-3 max-sm:items-center max-sm:pb-3 max-sm:pt-0 max-sm:flex max-sm:gap-1">
-                  <p className=" font-extrabold">{item.createdBy.username}</p>
-                  <p className=" text-gray-700">{item.text}</p>
-                </div>
-                <div className=" text-sm m-0 pl-3 text-slate-700">
-                  <Link href={"/"}>Lihat semua komentar</Link>
-                </div>
-                <div className=" max-sm:p-3 max-sm:flex max-sm:gap-3 max-sm:items-center">
-                  <div className=" w-7 h-7">
-                    <img
-                      className=" w-full h-full rounded-full object-cover"
-                      src={item.createdBy.avatar}
-                      alt=""
-                    />
+                <div className=" max-sm:text-sm max-sm:pl-3 max-sm:pb-3 max-sm:pt-0 max-sm:flex max-sm:flex-col max-sm:gap-1">
+                  <div className=" flex gap-2">
+                    <p className=" font-extrabold">{item.createdBy.username}</p>
+                    <p className=" text-gray-700">{item.text}</p>
                   </div>
-                  <div>
-                    <input
-                      className=" bg-slate-100 max-sm:placeholder:text-sm max-sm:font-figtree max-sm:focus:outline-none"
-                      type="text"
-                      placeholder="write comment .."
-                    />
+                  <div className=" text-sm m-0 max-sm:text-slate-400">
+                    <Link href={"/"}>Lihat semua komentar</Link>
+                  </div>
+                  <div className=" max-sm:flex max-sm:gap-3 max-sm:items-center">
+                    <div className=" w-7 h-7">
+                      <img
+                        className=" w-full h-full rounded-full object-cover"
+                        src={item.createdBy.avatar}
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <input
+                        className=" bg-slate-50 max-sm:placeholder:text-sm max-sm:font-figtree max-sm:focus:outline-none"
+                        type="text"
+                        placeholder="write comment .."
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
