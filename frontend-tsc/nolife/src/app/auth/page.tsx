@@ -13,6 +13,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFail, setIsFail] = useState(false);
 
   interface Data {
     email: string | null;
@@ -38,6 +39,7 @@ export default function LoginPage() {
       router.push("/landing");
     } catch (error) {
       console.log(error);
+      setIsFail(true);
     }
   };
 
@@ -93,6 +95,7 @@ export default function LoginPage() {
             </div>
             <div className=" flex flex-col gap-4 mt-12">
               <div className=" flex justify-center bg-black text-white p-3 rounded-3xl">
+                {isFail ? <p>Error</p> : null}
                 {isLoading ? (
                   <button onClick={loginUser} className=" text-sm">
                     Signing ..
