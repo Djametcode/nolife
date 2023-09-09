@@ -4,6 +4,7 @@
 
 import { Fragment, useEffect, useState } from "react";
 import getAllPost from "@/handler/getAllPost";
+import getCurrentUser from "@/handler/getCurrentUser";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { RiSendPlaneFill, RiChat1Line, RiBookmarkLine } from "react-icons/ri";
@@ -11,13 +12,16 @@ import Link from "next/link";
 
 export default function LandingComponent() {
   const [data, setData] = useState([]);
+  const [user, setuser] = useState([]);
   console.log(data);
 
   const getAllData = async () => {
     try {
       const response = await getAllPost();
+      const user = await getCurrentUser();
       const { msg, data } = response;
       setData(data);
+      setuser(user.data);
     } catch (error) {
       console.log(error);
     }
@@ -99,11 +103,17 @@ export default function LandingComponent() {
                   </div>
                   <div className=" max-sm:flex max-sm:gap-3 max-sm:items-center">
                     <div className=" w-7 h-7">
-                      <img
-                        className=" w-full h-full rounded-full object-cover"
-                        src={item.createdBy.avatar}
-                        alt=""
-                      />
+                      {user.map((item: { avatar: string }) => {
+                        return (
+                          <div className=" w-7 h-7">
+                            <img
+                              className=" w-full h-full object-cover rounded-full"
+                              src={item.avatar}
+                              alt=""
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
                     <div>
                       <input
