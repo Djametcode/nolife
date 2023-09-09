@@ -33,7 +33,7 @@ export default function LoginPage() {
       setPassword("");
       console.log(response);
 
-      router.push("/auth/signup");
+      router.push("/landing");
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +56,7 @@ export default function LoginPage() {
               </label>
               <input
                 value={email ?? ""}
-                className=" border p-2 placeholder:text-sm"
+                className=" border p-2 placeholder:text-sm text-sm"
                 type="text"
                 id="email"
                 placeholder="enter your email"
@@ -71,7 +71,7 @@ export default function LoginPage() {
               </label>
               <input
                 value={password ?? ""}
-                className="border p-2 placeholder:text-sm"
+                className="border p-2 placeholder:text-sm text-sm"
                 type="password"
                 id="password"
                 placeholder="password"
