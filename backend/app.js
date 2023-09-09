@@ -10,7 +10,11 @@ const postRoute = require("./route/postRoute");
 const chatRoute = require("./route/chatRoute");
 const auth = require("./middleware/auth");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["*"],
+  })
+);
 app.use(express.json());
 app.use("/api/v11/no-life/", authRoute);
 app.use("/api/v11/no-life/post", auth, postRoute);
