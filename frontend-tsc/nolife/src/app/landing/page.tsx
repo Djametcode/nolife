@@ -51,7 +51,7 @@ export default function LandingComponent() {
           return (
             <div
               key={item._id}
-              className=" bg-slate-50 max-sm:w-full max-sm:h-[500px] max-sm:flex max-sm:flex-col font-figtree"
+              className=" bg-slate-50 max-sm:w-full max-sm:h-[580px] max-sm:flex max-sm:flex-col font-figtree"
             >
               <div className=" bg-slate-50 flex text-black max-sm:h-16 items-center max-sm:gap-3 max-sm:p-3">
                 <div className=" w-11 h-11">
@@ -71,9 +71,13 @@ export default function LandingComponent() {
                   <div className=" p-3 text-sm">
                     <p>{item.text}</p>
                   </div>
+                ) : item.images.toLowerCase().includes("video") ? (
+                  <div className=" w-full h-full">
+                    <video className=" object-cover" src={item.images}></video>
+                  </div>
                 ) : (
                   <img
-                    className=" h-full w-full object-cover"
+                    className=" h-full w-full object-contain"
                     src={item.images}
                     alt=""
                   />
