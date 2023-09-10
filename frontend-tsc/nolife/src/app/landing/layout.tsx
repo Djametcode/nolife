@@ -30,36 +30,7 @@ export default function LandingLayout({ children }: Children) {
     name: string;
   }
 
-  const dummy: Dummy[] = [
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-    {
-      avatar: "/user.svg",
-      name: "Dummy",
-    },
-  ];
+  const dummy: Dummy[] = [];
 
   return (
     <div className=" max-sm:flex-col flex w-screen h-screen">

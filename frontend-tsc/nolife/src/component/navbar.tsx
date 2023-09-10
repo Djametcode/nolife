@@ -4,7 +4,7 @@
 
 import { GoHome, GoSearch, GoHomeFill } from "react-icons/go";
 import { BiMoviePlay } from "react-icons/bi";
-import { BsPlusSquare } from "react-icons/bs";
+import { AiOutlinePlusSquare, AiFillPlusSquare } from "react-icons/ai";
 import getCurrentUser from "@/handler/getCurrentUser";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -32,13 +32,17 @@ export default function Navbar() {
       <Link className=" w-full flex justify-center " href={"/landing"}>
         {path === "/landing" ? <GoHomeFill size={25} /> : <GoHome size={25} />}
       </Link>
-      <Link className=" w-full flex justify-center" href={"/"}>
+      <Link className=" w-full flex justify-center" href={"/search"}>
         <GoSearch size={25} />
       </Link>
-      <Link className="  w-full flex justify-center" href={"/"}>
-        <BsPlusSquare size={25} />
+      <Link className="  w-full flex justify-center" href={"/post"}>
+        {path === "/post" ? (
+          <AiFillPlusSquare size={25} />
+        ) : (
+          <AiOutlinePlusSquare size={25} />
+        )}
       </Link>
-      <Link className="  w-full flex justify-center" href={"/"}>
+      <Link className="  w-full flex justify-center" href={"/reels"}>
         <BiMoviePlay size={25} />
       </Link>
       <div className="  w-full flex justify-center">

@@ -6,9 +6,11 @@ import { Fragment, useEffect, useState } from "react";
 import getAllPost from "@/handler/getAllPost";
 import getCurrentUser from "@/handler/getCurrentUser";
 import { BsThreeDots } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { RiSendPlaneFill, RiChat1Line, RiBookmarkLine } from "react-icons/ri";
 import Link from "next/link";
+import timeConverter from "@/handler/timeConvet";
+import Cookies from "js-cookie";
 
 export default function LandingComponent() {
   const [data, setData] = useState([]);
@@ -44,13 +46,14 @@ export default function LandingComponent() {
           like: any[];
           comments: any[];
           _id: string;
+          timePosted: Date;
         }) => {
           return (
             <div
               key={item._id}
               className=" bg-slate-50 max-sm:w-full max-sm:h-[500px] max-sm:flex max-sm:flex-col font-figtree"
             >
-              <div className=" bg-slate-50 flex text-black max-sm:h-16 items-center max-sm:gap-5 max-sm:p-3">
+              <div className=" bg-slate-50 flex text-black max-sm:h-16 items-center max-sm:gap-3 max-sm:p-3">
                 <div className=" w-11 h-11">
                   <img
                     className=" w-full h-full object-cover rounded-full"
@@ -79,7 +82,15 @@ export default function LandingComponent() {
               <div className=" bg-slate-50">
                 <div className=" flex max-sm:gap-3 max-sm:p-3">
                   <div className=" flex items-center gap-2 text-xs">
-                    <FaRegHeart size={20} />
+                    {item.like.some(
+                      (items) => items.likeCreator === Cookies.get("userId")
+                    ) ? (
+                      <div className=" text-red-500">
+                        <FaHeart size={20} />
+                      </div>
+                    ) : (
+                      <FaRegHeart size={20} />
+                    )}
                     <p>{item.like.length}</p>
                   </div>
                   <div className=" flex items-center gap-2 text-xs">
@@ -122,6 +133,11 @@ export default function LandingComponent() {
                         placeholder="write comment .."
                       />
                     </div>
+                  </div>
+                  <div>
+                    <p className=" text-xs">
+                      {timeConverter(item.timePosted)} yang lalu
+                    </p>
                   </div>
                 </div>
               </div>
