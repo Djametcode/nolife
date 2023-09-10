@@ -9,7 +9,7 @@ const loginHandler = async (data: Data) => {
     console.log(data);
     try {
         const response = await axios.post(
-            "https://wandering-undershirt-dog.cyclic.app/api/v11/no-life/login-user",
+            "http://localhost:3000/api/v11/no-life/login-user",
             data
         );
         const result = await response.data;

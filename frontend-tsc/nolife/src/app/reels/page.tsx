@@ -55,7 +55,7 @@ export default function ReelComponent() {
               controls
               controlsList="nodownload"
             />
-            <div className=" absolute flex flex-col gap-2 bg-transparent bottom-40 left-3 text-2xl font-figtree font-extrabold text-white">
+            <div className=" absolute flex flex-col gap-2 bg-transparent bottom-36 left-3 text-2xl font-figtree font-extrabold text-white">
               <div className=" flex gap-4 items-center">
                 <div className=" w-12 h-12">
                   <img
@@ -72,21 +72,21 @@ export default function ReelComponent() {
                 <p>{item.text}</p>
               </div>
             </div>
-            <div className=" absolute flex flex-col gap-5 bg-transparent bottom-44 right-7 text-2xl font-figtree font-extrabold text-white">
+            <div className=" absolute flex flex-col gap-5 bg-transparent bottom-36 right-7 text-2xl font-figtree font-extrabold text-white">
               <div className=" flex flex-col justify-center items-center gap-2">
-                <FaRegHeart size={28} />
+                <FaRegHeart size={22} />
                 <p className=" text-base">{item.like.length}</p>
               </div>
               <div className=" flex flex-col justify-center items-center gap-2">
-                <RiChat1Line size={28} />
+                <RiChat1Line size={22} />
                 <p className=" text-base">{item.comments.length}</p>
               </div>
               <div className=" flex flex-col justify-center items-center gap-2">
-                <RiSendPlaneFill size={28} />
+                <RiSendPlaneFill size={22} />
                 <p className=" text-base">{item.like.length}</p>
               </div>
               <div className=" flex flex-col justify-center items-center gap-2">
-                <BsThreeDots size={28} />
+                <BsThreeDots size={22} />
               </div>
             </div>
           </div>

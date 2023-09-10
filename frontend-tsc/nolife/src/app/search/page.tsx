@@ -78,7 +78,7 @@ export default function SearchComponents() {
   }, []);
   return (
     <div>
-      <div className=" sticky top-0 p-3 flex items-center bg-slate-50">
+      <div className=" z-30 sticky top-0 p-3 flex items-center bg-slate-50">
         {isSearch ? (
           <span
             onClick={() => setIsSearch(false)}
@@ -101,7 +101,7 @@ export default function SearchComponents() {
         </div>
       </div>
       {isSearch ? null : (
-        <div className=" w-full h-full grid grid-cols-3 place-items-center grid-flow-rows pb-14">
+        <div className=" z-10 w-full h-full grid grid-cols-3 place-items-center grid-flow-rows pb-14">
           {item.map((image) => {
             return (
               <div className=" cursor-pointer w-full h-full overflow-scroll bg-black">
