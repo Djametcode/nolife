@@ -11,7 +11,8 @@ const chatRoute = require("./route/chatRoute");
 const auth = require("./middleware/auth");
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: 10000000 }));
+app.use(express.urlencoded({ extended: false }));
 app.use("/api/v11/no-life/", authRoute);
 app.use("/api/v11/no-life/post", auth, postRoute);
 app.use("/api/v11/no-life/chat", auth, chatRoute);
