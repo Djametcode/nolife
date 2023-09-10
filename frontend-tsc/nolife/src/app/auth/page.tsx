@@ -29,9 +29,10 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await loginHandler(data);
-      const { msg, token } = response;
+      const response = await loginHandler(data, e);
+      const { msg, token, user } = response;
       Cookies.set("token", token);
+      Cookies.set("userId", user._id);
       setEmail("");
       setPassword("");
       console.log(response);

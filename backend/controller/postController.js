@@ -239,14 +239,18 @@ const giveComment = async (req, res) => {
   });
 
   try {
-    const post = await Post.findOne({ _id: id });
+    const post = await Post.findOne({
+      $where: {
+        _id: id,
+      },
+    });
 
     if (!post) {
       return res.status(404).json({ msg: "Post not found or deleted?" });
     }
 
     const newCommentData = await Comment.create(newComment);
-    await post.comments.push(newCommentData);
+    await post.comments({ $push: { newCommentData } });
     await post.save();
 
     return res.status(200).json({ msg: "Added Comment !", newCommentData });
@@ -258,7 +262,11 @@ const giveComment = async (req, res) => {
 const getCommentPostId = async (req, res) => {
   const { id } = req.query;
   try {
-    const post = await Post.findOne({ _id: id }).populate({
+    const post = await Post.findOne({
+      $where: {
+        _id: id,
+      },
+    }).populate({
       path: "createdBy",
       select: ["username", "avatar"],
     });

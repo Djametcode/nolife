@@ -8,12 +8,15 @@ import getCurrentUser from "@/handler/getCurrentUser";
 import { useEffect, useState } from "react";
 import { FcPlus } from "react-icons/fc";
 import { RiMessengerLine, RiHeartLine } from "react-icons/ri";
+import Cookies from "js-cookie";
+import { redirect, useRouter } from "next/navigation";
 
 interface Children {
   children: React.ReactNode;
 }
 
 export default function LandingLayout({ children }: Children) {
+  const router = useRouter();
   const [currUser, setCurrUser] = useState([]);
   console.log(currUser);
   const getUser = async () => {
@@ -31,6 +34,11 @@ export default function LandingLayout({ children }: Children) {
   }
 
   const dummy: Dummy[] = [];
+  const token = Cookies.get("token");
+
+  useEffect(() => {
+    token ? router.push("/landing") : router.push("/auth");
+  }, [router, token]);
 
   return (
     <div className=" max-sm:flex-col flex w-screen h-screen">

@@ -48,13 +48,13 @@ export default function Navbar() {
       <div className="  w-full flex justify-center">
         {user.map((item: { avatar: string; username: string }) => {
           return (
-            <div key={item.username} className=" w-7 h-7">
+            <Link href={"/profile"} key={item.username} className=" w-7 h-7">
               <img
                 className=" rounded-full object-cover"
                 src={item.avatar}
                 alt=""
               />
-            </div>
+            </Link>
           );
         })}
       </div>

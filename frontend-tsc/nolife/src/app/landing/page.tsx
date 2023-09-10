@@ -13,7 +13,6 @@ import getAllPost from "@/handler/getAllPost";
 import getCurrentUser from "@/handler/getCurrentUser";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { AiFillHeart } from "react-icons/ai";
 import { RiSendPlaneFill, RiChat1Line, RiBookmarkLine } from "react-icons/ri";
 import Link from "next/link";
 import timeConverter from "@/handler/timeConvet";
@@ -29,6 +28,7 @@ export default function LandingComponent() {
   const [comment, setComment] = useState([]);
   const [isComment, setIsComment] = useState<boolean>(false);
   const [commentText, setCommentText] = useState<string>("");
+  const [savedPostId, setPostId] = useState<string>("");
   console.log(comment);
   console.log(data);
   console.log(commentText);
@@ -39,6 +39,7 @@ export default function LandingComponent() {
       const response = await getAllPost();
       const user = await getCurrentUser();
       const { msg, data } = response;
+      console.log(data);
       setData(data);
       setuser(user.data);
     } catch (error) {
@@ -52,6 +53,7 @@ export default function LandingComponent() {
       const response = await getPostComment(postId);
       console.log(response);
       setComment(response?.data.data);
+      setPostId(postId);
       setIsComment(true);
     } catch (error) {
       console.log(error);
@@ -67,6 +69,8 @@ export default function LandingComponent() {
       const response = await postCommentHandler(postId, text);
       console.log(response);
       getComment(postId);
+      setCommentText("");
+      setRefresher(refresher + 1);
     } catch (error) {
       console.log(error);
     }
@@ -126,7 +130,7 @@ export default function LandingComponent() {
                             </div>
                             <div className=" flex flex-col gap-1">
                               <div className=" flex gap-3 items-center">
-                                <p className=" text-base font-extrabold">
+                                <p className=" text-sm font-extrabold">
                                   {item.createdBy.username}
                                 </p>
                                 <p className=" text-xs">
@@ -163,6 +167,7 @@ export default function LandingComponent() {
                         })}
                         <div className=" w-full">
                           <input
+                            value={commentText}
                             onChange={(
                               e: React.ChangeEvent<HTMLInputElement>
                             ) => setCommentText(e.target.value)}
@@ -174,7 +179,7 @@ export default function LandingComponent() {
                         <div>
                           <button
                             onClick={(e: React.MouseEvent) =>
-                              postComment(item._id, commentText)
+                              postComment(savedPostId, commentText)
                             }
                             className=" bg-black text-white pl-3 pr-3 rounded-lg font-figtree"
                           >
@@ -227,7 +232,7 @@ export default function LandingComponent() {
                       (items) => items.likeCreator === Cookies.get("userId")
                     ) ? (
                       <div>
-                        <AiFillHeart size={20} />
+                        <FaHeart size={20} fill={"red"} />
                       </div>
                     ) : (
                       <div
