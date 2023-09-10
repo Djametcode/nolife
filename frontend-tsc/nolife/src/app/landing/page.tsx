@@ -92,7 +92,7 @@ export default function LandingComponent() {
               className=" relative bg-slate-50 max-sm:w-full max-sm:h-[700px] max-sm:flex max-sm:flex-col font-figtree"
             >
               {isComment ? (
-                <div className=" z-40 w-full h-[800px] rounded-tr-3xl rounded-tl-3xl fixed bottom-0 bg-slate-100">
+                <div className=" z-40 w-full h-full rounded-tr-3xl rounded-tl-3xl fixed bottom-0 top-10 bg-slate-100">
                   <div className=" p-3 flex justify-center items-center font-figtree border-b h-16 border-slate-300">
                     <h1 className=" text-black">Komentar</h1>
                     <div
@@ -147,7 +147,7 @@ export default function LandingComponent() {
                         );
                       }
                     )}
-                    <div className=" absolute bottom-5 w-full z-40">
+                    <div className=" absolute bottom-14 w-full z-40">
                       <div className=" w-full h-16 flex gap-5 items-center p-3">
                         {user.map((item: { avatar: string; _id: string }) => {
                           return (
@@ -225,8 +225,8 @@ export default function LandingComponent() {
                     {item.like.some(
                       (items) => items.likeCreator === Cookies.get("userId")
                     ) ? (
-                      <div className=" text-red-500">
-                        <FaHeart size={20} />
+                      <div>
+                        <FaHeart size={20} fill={"red"} />
                       </div>
                     ) : (
                       <div
