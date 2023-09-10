@@ -46,9 +46,9 @@ export default function Navbar() {
         <BiMoviePlay size={25} />
       </Link>
       <div className="  w-full flex justify-center">
-        {user.map((item: { avatar: string; _id: string }) => {
+        {user.map((item: { avatar: string; username: string }) => {
           return (
-            <div key={item._id} className=" w-7 h-7">
+            <div key={item.username} className=" w-7 h-7">
               <img
                 className=" rounded-full object-cover"
                 src={item.avatar}
