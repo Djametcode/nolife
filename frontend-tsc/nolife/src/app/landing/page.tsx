@@ -13,6 +13,7 @@ import getAllPost from "@/handler/getAllPost";
 import getCurrentUser from "@/handler/getCurrentUser";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { AiFillHeart } from "react-icons/ai";
 import { RiSendPlaneFill, RiChat1Line, RiBookmarkLine } from "react-icons/ri";
 import Link from "next/link";
 import timeConverter from "@/handler/timeConvet";
@@ -226,7 +227,7 @@ export default function LandingComponent() {
                       (items) => items.likeCreator === Cookies.get("userId")
                     ) ? (
                       <div>
-                        <FaHeart size={20} fill={"red"} />
+                        <AiFillHeart size={20} />
                       </div>
                     ) : (
                       <div
