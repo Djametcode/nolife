@@ -262,30 +262,16 @@ const giveComment = async (req, res) => {
 const getCommentPostId = async (req, res) => {
   const { id } = req.query;
   try {
-    const post = await Post.findOne({
-      $where: {
-        _id: id,
-      },
-    }).populate({
-      path: "createdBy",
-      select: ["username", "avatar"],
-    });
-    const postFormat = [
-      {
-        text: post.text,
-        images: post.images,
-        createdBy: post.createdBy,
-      },
-    ];
     const data = await Comment.find({ postId: id }).populate({
       path: "createdBy",
       select: ["username", "avatar"],
     });
-    return res.status(200).json({
-      msg: "Success",
-      postFormat,
-      data,
-    });
+
+    if (!data) {
+      return res.status(404).json({ msg: "No comment" });
+    }
+
+    return res.status(200).json({ msg: "success", data });
   } catch (error) {
     console.log(error);
   }

@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
+/* eslint-disable react/jsx-key */
 import Navbar from "@/component/navbar";
 /* eslint-disable @next/next/no-img-element */
 import SideBarLarge from "@/component/sidebar";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { FcPlus } from "react-icons/fc";
 import { RiMessengerLine, RiHeartLine } from "react-icons/ri";
 import Cookies from "js-cookie";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Children {
   children: React.ReactNode;
@@ -36,10 +36,6 @@ export default function LandingLayout({ children }: Children) {
   const dummy: Dummy[] = [];
   const token = Cookies.get("token");
 
-  useEffect(() => {
-    token ? router.push("/landing") : router.push("/auth");
-  }, [router, token]);
-
   return (
     <div className=" max-sm:flex-col flex w-screen h-screen">
       <div className=" max-sm:hidden fixed w-72 h-full pt-8 pb-5 pl-10 border-r bg-slate-100 font-figtree">
@@ -60,7 +56,10 @@ export default function LandingLayout({ children }: Children) {
             <div>
               {currUser.map((item: { avatar: string }) => {
                 return (
-                  <div className=" flex flex-col items-center gap-1">
+                  <div
+                    key={item.avatar}
+                    className=" flex flex-col items-center gap-1"
+                  >
                     <div className=" w-16 h-16 relative">
                       <img
                         className=" w-full h-full rounded-full"

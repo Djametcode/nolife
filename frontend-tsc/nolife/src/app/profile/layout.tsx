@@ -30,9 +30,6 @@ export default function ProfileLayout({ children }: Children) {
 
   const router = useRouter();
   const token = Cookies.get("token");
-  useEffect(() => {
-    token ? router.push("/landing") : router.push("/auth");
-  }, [router, token]);
   return (
     <div>
       <div className=" h-16 flex item-center p-3">

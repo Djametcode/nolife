@@ -12,9 +12,6 @@ interface Children {
 export default function ReelLayout({ children }: Children) {
   const router = useRouter();
   const token = Cookies.get("token");
-  useEffect(() => {
-    token ? router.push("/landing") : router.push("/auth");
-  }, [router, token]);
   return (
     <div className=" w-screen h-screen">
       {children}
