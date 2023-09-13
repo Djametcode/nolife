@@ -404,6 +404,7 @@ const getCurrentUser = async (req, res) => {
       msg: "success",
       data: [
         {
+          _id: data._id,
           username: data.username,
           email: data.email,
           post: data.posts,

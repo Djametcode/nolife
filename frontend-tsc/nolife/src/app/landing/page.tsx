@@ -178,7 +178,7 @@ export default function LandingComponent() {
                         </div>
                         <div>
                           <button
-                            onClick={(e: React.MouseEvent) =>
+                            onClick={() =>
                               postComment(savedPostId, commentText)
                             }
                             className=" bg-black text-white pl-3 pr-3 rounded-lg font-figtree"

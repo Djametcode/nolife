@@ -15,7 +15,7 @@ export default function ReelLayout({ children }: Children) {
   return (
     <div className=" w-screen h-screen">
       {children}
-      <div className=" z-40 fixed bottom-0 w-full">
+      <div className=" z-30 fixed bottom-0 w-full">
         <Navbar />
       </div>
     </div>
