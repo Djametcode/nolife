@@ -45,12 +45,12 @@ export default function Navbar() {
       <Link className="  w-full flex justify-center" href={"/reels"}>
         <BiMoviePlay size={25} />
       </Link>
-      <div className="  w-full flex justify-center">
+      <div className=" h-full w-full flex justify-center items-center">
         {user.map((item: { avatar: string; username: string }) => {
           return (
             <Link href={"/profile"} key={item.username} className=" w-7 h-7">
               <img
-                className=" rounded-full object-cover"
+                className=" w-full h-full rounded-full object-cover"
                 src={item.avatar}
                 alt=""
               />

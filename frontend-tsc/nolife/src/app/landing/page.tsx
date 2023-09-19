@@ -21,6 +21,9 @@ import Cookies from "js-cookie";
 import getPostComment from "@/handler/geteCommentPost";
 import { IoClose } from "react-icons/io5";
 import postCommentHandler from "@/handler/postComment";
+import { BiArrowBack } from "react-icons/bi";
+import { FcPlus } from "react-icons/fc";
+import { RiMessengerLine, RiHeartLine } from "react-icons/ri";
 
 export default function LandingComponent() {
   const [data, setData] = useState([]);
@@ -29,6 +32,7 @@ export default function LandingComponent() {
   const [isComment, setIsComment] = useState<boolean>(false);
   const [commentText, setCommentText] = useState<string>("");
   const [savedPostId, setPostId] = useState<string>("");
+  const [isNotif, setIsNotif] = useState<boolean>(false);
   console.log(comment);
   console.log(data);
   console.log(commentText);
@@ -76,8 +80,91 @@ export default function LandingComponent() {
     }
   };
 
+  interface Dummy {
+    avatar: string;
+    name: string;
+  }
+
+  const dummy: Dummy[] = [];
+
   return (
     <div className=" max-sm:w-full max-sm:h-full">
+      <div className=" h-44 w-full font-figtree max-sm:flex-col max-sm:flex max-sm:gap-3 p-3">
+        <div className=" flex items-center">
+          <div className=" w-[125px]">
+            <img src="/logo.png" alt="" />
+          </div>
+          <div className=" flex absolute right-5 gap-5">
+            <div onClick={() => setIsNotif(true)} className=" cursor-pointer">
+              <RiHeartLine size={23} />
+            </div>
+            <RiMessengerLine size={23} />
+          </div>
+        </div>
+        <div className=" flex gap-5 overflow-scroll">
+          <div>
+            {user.map((item: { avatar: string }) => {
+              return (
+                <div
+                  key={item.avatar}
+                  className=" flex flex-col items-center gap-1"
+                >
+                  <div className=" w-16 h-16 relative">
+                    <img
+                      className=" w-full h-full rounded-full"
+                      src={item.avatar}
+                      alt=""
+                    />
+                    <span className=" bg-slate-50 rounded-full absolute right-0 bottom-0">
+                      <FcPlus size={22} />
+                    </span>
+                  </div>
+                  <div className=" flex items-center">
+                    <p>Anda</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className=" flex gap-5">
+            {dummy.map((item: Dummy) => {
+              return (
+                <div className=" flex flex-col gap-1 items-center">
+                  <div className=" w-16 h-16 rounded-full">
+                    <img
+                      className=" w-full h-full rounded-full object-cover bg-slate-300"
+                      src={item.avatar}
+                      alt=""
+                    />
+                  </div>
+                  <div className=" text-sm">
+                    <p>{item.name}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      {isNotif ? (
+        <div className=" fixed top-0 w-full h-full bg-slate-100 z-50 font-figtree">
+          <div className=" flex gap-5 h-14  items-center p-3">
+            <div onClick={() => setIsNotif(false)} className=" cursor-pointer">
+              <BiArrowBack size={25} />
+            </div>
+            <h1>Notifikasi</h1>
+          </div>
+          <div className=" p-3 flex flex-col gap-1">
+            {user.map((item: { notif: { text: string }[] }) =>
+              item.notif.map((items: { text: string }) => (
+                <div className=" bg-slate-50 shadow-sm text-black p-2 rounded-lg">
+                  <p>{items.text}</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      ) : null}
       {data.map(
         (item: {
           createdBy: {
@@ -94,7 +181,7 @@ export default function LandingComponent() {
           return (
             <div
               key={item._id}
-              className=" relative bg-slate-50 max-sm:w-full max-sm:h-[700px] max-sm:flex max-sm:flex-col font-figtree"
+              className=" relative md:ml-72 bg-slate-50 md:w-[450px] max-sm:w-full max-sm:h-[700px] max-sm:flex max-sm:flex-col font-figtree"
             >
               {isComment ? (
                 <div className=" z-40 w-full h-full rounded-tr-3xl rounded-tl-3xl fixed bottom-0 top-10 bg-slate-100">
@@ -158,7 +245,7 @@ export default function LandingComponent() {
                           return (
                             <div className=" flex items-center w-10 h-10">
                               <img
-                                className=" rounded-full"
+                                className=" rounded-full object-cover"
                                 src={item.avatar}
                                 alt=""
                               />
