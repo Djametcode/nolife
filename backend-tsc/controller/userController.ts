@@ -3,6 +3,7 @@ import { UserModel } from "../model/user";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
 import { env } from "../env";
+import { v2 as cloudinary, v2 } from 'cloudinary'
 
 const createUser = async (req: Request, res: Response) => {
     const {username, email, password} = req.body
@@ -56,6 +57,29 @@ const loginUser = async (req: Request, res: Response) => {
     }
 }
 
+const updateUser = async (req: Request, res: Response) => {
+    const { id } = req.params
+    let file = req.file
+    try {
+        if (file) {
+            const result = await v2.uploader.upload(file.path, {
+                folder: 'Testing',
+                resource_type: 'auto'
+            })
+
+            if (id !== req.user.userId) {
+                return res.status(401).json({msg: 'Please login with correct account'})
+            }
+
+            const user = await UserModel.findOneAndUpdate({ _id: req.user.userId }, { avatar: result.secure_url }, { new: true })
+
+            return res.status(200).json({msg: 'Success update', user})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const getAllUser = async (req: Request, res: Response) => {
     try {
         const user = await UserModel.find({})
@@ -66,4 +90,4 @@ const getAllUser = async (req: Request, res: Response) => {
     }
 }
 
-export { createUser, getAllUser, loginUser }
+export { createUser, getAllUser, loginUser, updateUser }
