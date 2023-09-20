@@ -37,7 +37,7 @@ const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 createdBy: createdBy
             });
             user.post.push({
-                _id: post._id
+                postId: post._id
             });
             yield user.save();
             return res.status(200).json({ msg: 'Success with image', user });
@@ -69,14 +69,13 @@ const updatePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 folder: 'Testing',
                 resource_type: 'auto'
             });
+            const postId = yield post_1.PostModel.findOne({ _id: id });
+            if ((postId === null || postId === void 0 ? void 0 : postId.createdBy.toString()) !== req.user.userId) {
+                return res.status(401).json({ msg: "Please use correct account" });
+            }
             const post = yield post_1.PostModel.findOneAndUpdate({ _id: id }, { text: text, images: result.secure_url }, { new: true });
             if (!post) {
                 return res.status(404).json({ msg: 'Post not Found' });
-            }
-            const postIndex = user.post.findIndex((item) => item._id.toString() === id);
-            if (postIndex !== -1) {
-                user.post[postIndex] = post;
-                yield user.save();
             }
             return res.status(200).json({ msg: 'Success Update Post', post });
         }
@@ -88,8 +87,6 @@ const updatePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (!post) {
             return res.status(404).json({ msg: 'Post not Found' });
         }
-        const postIndex = user.post.findIndex((item) => item._id.toString() === id);
-        yield user.save();
         return res.status(200).json({ msg: 'Success Update Post', post });
     }
     catch (error) {
@@ -104,7 +101,11 @@ const deletePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (!post) {
             return res.status(404).json({ msg: 'Post not found or already delete' });
         }
-        return res.status(200).json({ msg: 'Success', post });
+        const currentUser = yield user_1.UserModel.findOne({ _id: req.user.userId });
+        const postIndex = currentUser === null || currentUser === void 0 ? void 0 : currentUser.post.findIndex((item) => item.postId === (post === null || post === void 0 ? void 0 : post._id));
+        currentUser === null || currentUser === void 0 ? void 0 : currentUser.post.slice(postIndex, 1);
+        yield (currentUser === null || currentUser === void 0 ? void 0 : currentUser.save());
+        return res.status(200).json({ msg: 'Success', currentUser });
     }
     catch (error) {
         console.log(error);
