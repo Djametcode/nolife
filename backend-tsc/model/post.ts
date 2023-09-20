@@ -7,6 +7,7 @@ interface Like {
 }
 
 export interface Post extends Document {
+    _id: Types.ObjectId
     text: string;
     images: string;
     createdBy: Types.ObjectId

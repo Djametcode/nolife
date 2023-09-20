@@ -12,5 +12,6 @@ const multer_1 = require("../middleware/multer");
 router.post('/regist', userController_1.createUser);
 router.post('/login', userController_1.loginUser);
 router.get('/all-user', userController_1.getAllUser);
-router.patch('/update-user/:id', auth_1.authMiddleware, multer_1.upload, userController_1.updateUser);
+router.patch('/update-user', auth_1.authMiddleware, multer_1.upload, userController_1.updateUser);
+router.post('/follow/:id', auth_1.authMiddleware, userController_1.followUser);
 exports.userRouter = router;

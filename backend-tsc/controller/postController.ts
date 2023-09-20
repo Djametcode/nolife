@@ -3,6 +3,7 @@ import { Post, PostModel } from "../model/post";
 import { Request, Response } from "express";
 import { v2 as cloudinary } from "cloudinary";
 import { Like, LikeModel } from "../model/like";
+import { HydratedDocument } from "mongoose";
 
 
 const createPost = async (req: Request, res: Response) => {
@@ -36,7 +37,7 @@ const createPost = async (req: Request, res: Response) => {
             })
 
             user.post.push({
-                _id: post._id
+                postId: post._id
             })
             await user.save()
 
@@ -59,10 +60,9 @@ const updatePost = async (req: Request, res: Response) => {
     const { id } = req.params
     const { text } = req.body
     let file = req.file
+
     try {
-
         if (file) {
-
             const user = await UserModel.findOne({_id: req.user.userId}) 
 
             if (!user) {
@@ -73,18 +73,17 @@ const updatePost = async (req: Request, res: Response) => {
                 folder: 'Testing',
                 resource_type: 'auto'
             })
+
+            const postId = await PostModel.findOne({_id: id})
+
+            if (postId?.createdBy.toString() !== req.user.userId) {
+                return res.status(401).json({msg: "Please use correct account"})
+            }
     
             const post = await PostModel.findOneAndUpdate({ _id: id }, { text: text, images: result.secure_url }, { new: true })
     
             if (!post) {
                 return res.status(404).json({msg: 'Post not Found'})
-            }
-    
-            const postIndex = user.post.findIndex((item) => item._id.toString() === id)
-
-            if (postIndex !== -1) {
-                user.post[postIndex] = post
-                await user.save()
             }
     
             return res.status(200).json({msg: 'Success Update Post', post})
@@ -103,10 +102,6 @@ const updatePost = async (req: Request, res: Response) => {
             return res.status(404).json({msg: 'Post not Found'})
         }
 
-        const postIndex = user.post.findIndex((item) => item._id.toString() === id)
-
-        await user.save()
-
         return res.status(200).json({msg: 'Success Update Post', post})
     } catch (error) {
         console.log(error)
@@ -117,12 +112,19 @@ const deletePost = async (req: Request, res: Response) => {
     const { id } = req.params
     try {
         const post = await PostModel.findOneAndDelete({_id: id})
-
         if (!post) {
             return res.status(404).json({msg: 'Post not found or already delete'})
         }
 
-        return res.status(200).json({msg: 'Success', post})
+        const currentUser = await UserModel.findOne({_id: req.user.userId})
+        
+        const postIndex = currentUser?.post.findIndex((item) => item.postId === post?._id)
+        currentUser?.post.slice(postIndex, 1 )
+        
+        await currentUser?.save()
+        
+        return res.status(200).json({msg: 'Success', currentUser})
+
     } catch (error) {
         console.log(error)
     }

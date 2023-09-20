@@ -40,8 +40,8 @@ const UserSchema = new Schema({
         default: ""
     },
     post: [{
-            _id: {
-                type: String,
+            postId: {
+                type: Schema.Types.ObjectId,
                 ref: 'Post'
             }
         }],

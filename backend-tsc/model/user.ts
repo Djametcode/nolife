@@ -18,7 +18,7 @@ interface Following {
 }
 
 export interface Post {
-    _id: Types.ObjectId;
+    postId: Types.ObjectId;
 }
 
 interface User extends Document {
@@ -56,8 +56,8 @@ const UserSchema = new Schema<User>({
         default: ""
     },
     post: [{
-        _id: {
-            type: String,
+        postId: {
+            type: Schema.Types.ObjectId,
             ref: 'Post'
         }
     }],
