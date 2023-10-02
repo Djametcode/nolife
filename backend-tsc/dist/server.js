@@ -13,33 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
-const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
-const db_1 = __importDefault(require("./db/db"));
+const cors_1 = __importDefault(require("cors"));
+const connectDB_1 = __importDefault(require("./db/connectDB"));
 const userRoute_1 = require("./routes/userRoute");
-const postRoute_1 = require("./routes/postRoute");
 const cloudinary_1 = require("cloudinary");
-const env_1 = require("./env");
+const postRoutes_1 = require("./routes/postRoutes");
 cloudinary_1.v2.config({
-    api_key: env_1.env.API_KEY,
-    api_secret: env_1.env.API_SECRET,
-    cloud_name: env_1.env.CLOUD_NAME
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+    cloud_name: process.env.CLOUD_NAME
 });
-//middleware
-const auth_1 = require("./middleware/auth");
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: ["http://localhost:3000"]
+}));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use('/api/v14/no-life/auth', userRoute_1.userRouter);
-app.use('/api/v14/no-life/post', auth_1.authMiddleware, postRoute_1.PostRouter);
+app.use('/api/v15/user', userRoute_1.userRouter);
+app.use('/api/v15/post', postRoutes_1.postRoute);
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!process.env.MONGO_URL) {
-            throw Error('Missing env');
-        }
-        yield (0, db_1.default)(process.env.MONGO_URL);
-        app.listen(3000, () => console.log(`Server running on port 3000`));
+        yield (0, connectDB_1.default)(process.env.MONGO_URL);
+        app.listen(3000, () => console.log("Server running"));
     }
     catch (error) {
         console.log(error);

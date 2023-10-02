@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.upload = void 0;
 const multer_1 = __importDefault(require("multer"));
-const diskStorage = multer_1.default.diskStorage({
-    destination(req, file, callback) {
+const storage = multer_1.default.diskStorage({
+    destination: function (req, file, callback) {
         callback(null, '/tmp');
     },
     filename(req, file, callback) {
-        callback(null, file.originalname + '-' + Date.now());
+        callback(null, file.originalname + '_' + Date.now());
     },
 });
-exports.upload = (0, multer_1.default)({ storage: diskStorage }).single('file');
+exports.upload = (0, multer_1.default)({ storage: storage }).single('file');

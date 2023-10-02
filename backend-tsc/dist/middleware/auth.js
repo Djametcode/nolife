@@ -12,17 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const env_1 = require("../env");
-const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const header = req.headers.authorization;
-    if (!header || !header.startsWith("Bearer ")) {
-        return res.status(401).json({ msg: 'Please login first' });
+const authUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const HeaderCheck = req.headers.authorization;
+    if (!(HeaderCheck === null || HeaderCheck === void 0 ? void 0 : HeaderCheck.startsWith('Bearer ')) || !HeaderCheck) {
+        return res.status(401).json({ msg: 'Please login First' });
     }
-    const token = header.split(" ")[1];
-    const data = jsonwebtoken_1.default.verify(token, env_1.env.JWT_SECRET);
-    req.user = { userId: data.userId, username: data.username };
-    next();
+    const token = HeaderCheck.split(" ")[1];
+    try {
+        const data = yield jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+        if (!data) {
+            return res.status(401).json({ msg: 'Token Error Please Login Again' });
+        }
+        req.user = { userId: data.userId, username: data.username, email: data.email };
+        next();
+    }
+    catch (error) {
+        console.log(error);
+    }
 });
-exports.authMiddleware = auth;
+exports.default = authUser;
